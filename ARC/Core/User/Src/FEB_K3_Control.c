@@ -9,7 +9,7 @@
 
 static K3_Status status = OPEN;
 
-void START_K3_CONTROL(void const *argument)
+void START_K3_CONTROL(void *argument)
 {
 
   LOG_I(TAG_K3, "%s", "K3 Task Started Successfully");

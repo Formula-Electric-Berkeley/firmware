@@ -44,7 +44,7 @@ void set_state_at(State_item i, uint16_t val)
   state[i] = val;
 }
 
-void START_STATE_READ(void const *argument)
+void START_STATE_READ(void *argument)
 {
 
   LOG_I(TAG_ARC_STATE, "%s", "State Task Started Successfully");

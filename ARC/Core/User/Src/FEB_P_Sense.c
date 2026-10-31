@@ -18,7 +18,7 @@ void set_status(DSB_Status s)
   status = s;
 }
 
-void START_P_SENSE(void const *argument)
+void START_P_SENSE(void *argument)
 {
 
   LOG_I(TAG_P_SENSE, "%s", "P_Sense Task Started Successfully");

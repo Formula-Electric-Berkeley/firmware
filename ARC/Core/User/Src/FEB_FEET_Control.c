@@ -12,7 +12,7 @@ static uint16_t blink_time = 0;
 static const int dt = 10; // 100 hz check, can change if this is too frequent
 static const int T = 500; // blink every 500 ms
 
-void START_FEET_CONTROL(void const *argument)
+void START_FEET_CONTROL(void *argument)
 {
 
   LOG_I(TAG_FEET, "%s", "FEET Task Started Successfully");

@@ -47,6 +47,7 @@ CAN_HandleTypeDef hcan1;
 CAN_HandleTypeDef hcan2;
 
 I2C_HandleTypeDef hi2c1;
+UART_HandleTypeDef huart2;
 
 /* Definitions for K3_CONTROL */
 osThreadId_t K3_CONTROLHandle;
@@ -101,6 +102,10 @@ const osMessageQueueAttr_t canRxQueue_attributes = {.name = "canRxQueue"};
 /* Definitions for tpsI2cMutex */
 osMutexId_t tpsI2cMutexHandle;
 const osMutexAttr_t tpsI2cMutex_attributes = {.name = "tpsI2cMutex"};
+osMutexId_t debugUartTxMutexHandle;
+const osMutexAttr_t debugUartTxMutex_attributes = {.name = "debugUartTxMutex"};
+osMutexId_t debugLogMutexHandle;
+const osMutexAttr_t debugLogMutex_attributes = {.name = "debugLogMutex"};
 /* Definitions for canTxMutex */
 osMutexId_t canTxMutexHandle;
 const osMutexAttr_t canTxMutex_attributes = {.name = "canTxMutex"};
@@ -121,6 +126,7 @@ static void MX_ADC1_Init(void);
 static void MX_CAN1_Init(void);
 static void MX_CAN2_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_USART2_UART_Init(void);
 void START_K3_CONTROL(void *argument);
 void START_FEET_CONTROL(void *argument);
 void START_P_SENSE(void *argument);
@@ -152,10 +158,6 @@ int main(void)
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
-  /* USER CODE BEGIN Init */
-  FEB_Init();
-  /* USER CODE END Init */
-
   /* Configure the system clock */
   SystemClock_Config();
 
@@ -169,6 +171,7 @@ int main(void)
   MX_CAN1_Init();
   MX_CAN2_Init();
   MX_I2C1_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -178,6 +181,10 @@ int main(void)
   /* Create the mutex(es) */
   /* creation of tpsI2cMutex */
   tpsI2cMutexHandle = osMutexNew(&tpsI2cMutex_attributes);
+  debugUartTxMutexHandle = osMutexNew(&debugUartTxMutex_attributes);
+  debugLogMutexHandle = osMutexNew(&debugLogMutex_attributes);
+
+  FEB_Init();
 
   /* creation of canTxMutex */
   canTxMutexHandle = osMutexNew(&canTxMutex_attributes);
@@ -461,6 +468,26 @@ static void MX_I2C1_Init(void)
   /* USER CODE BEGIN I2C1_Init 2 */
 
   /* USER CODE END I2C1_Init 2 */
+}
+
+/**
+ * @brief USART2 Initialization Function
+ * @retval None
+ */
+static void MX_USART2_UART_Init(void)
+{
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 115200;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+    Error_Handler();
+  }
 }
 
 /**

@@ -22,6 +22,10 @@ message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 add_compile_definitions(
     USE_HAL_DRIVER
     STM32F446xx
+    FEB_CAN_USE_FREERTOS=1
+    FEB_LOG_USE_FREERTOS=1
+    FEB_TPS_USE_FREERTOS=1
+    FEB_UART_USE_FREERTOS=1
     $<$<CONFIG:Debug>:DEBUG>
 )
 
@@ -35,13 +39,16 @@ file(GLOB STARTUP_ASM "startup_*.s")
 file(GLOB HAL_SOURCES "Drivers/STM32F4xx_HAL_Driver/Src/*.c")
 list(FILTER HAL_SOURCES EXCLUDE REGEX "_template\\.c$")
 
+# The ARC app uses unpack helpers from the generated CAN database.
+set(CAN_DATABASE_SOURCE "${CMAKE_SOURCE_DIR}/common/FEB_CAN_Library_SN4/gen/feb_can_db.c")
+
 # Combine base sources
-set(ALL_SOURCES ${CORE_SOURCES} ${STARTUP_ASM} ${HAL_SOURCES})
+set(ALL_SOURCES ${CORE_SOURCES} ${STARTUP_ASM} ${HAL_SOURCES} ${CAN_DATABASE_SOURCE})
 
 # ── Middleware: FreeRTOS ─────────────────────────────────────────────
 if(IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS")
     file(GLOB FREERTOS_CORE "Middlewares/Third_Party/FreeRTOS/Source/*.c")
-    file(GLOB FREERTOS_CMSIS "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/*.c")
+    file(GLOB FREERTOS_CMSIS "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/*.c")
     file(GLOB FREERTOS_PORT "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/*.c")
     file(GLOB FREERTOS_HEAP "Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c")
     list(APPEND ALL_SOURCES
@@ -68,7 +75,7 @@ set(BASE_INCLUDES
 if(IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS")
     list(APPEND BASE_INCLUDES
         Middlewares/Third_Party/FreeRTOS/Source/include
-        Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS
+        Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
         Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
     )
 endif()

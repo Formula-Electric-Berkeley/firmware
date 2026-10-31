@@ -147,11 +147,11 @@ void StartTPSTask(void *argument)
          * - meas.power_w (float, in Watts)
          */
         // LOG_D(TAG_TPS, "V=%.2fV I=%.3fA", meas.bus_voltage_v, meas.current_a);
-        set_state_at(TPS_STATUS, OK);
+        set_state_at(TPS_STATUS, ARC_OK);
       }
       else
       {
-        set_state_at(TPS_STATUS, NOT_OK);
+        set_state_at(TPS_STATUS, ARC_NOT_OK);
       }
     }
 
