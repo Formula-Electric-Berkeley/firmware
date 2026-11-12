@@ -10,94 +10,105 @@
     },
     "tasks": [
         {
-            "type": "shell",
+            "type": "cmake",
             "label": "Build BMS",
-            "command": "cmake",
-            "args": ["--build", "build/Debug", "--target", "BMS"],
+            "command": "build",
+            "targets": ["BMS"],
+            "preset": "Debug",
             "group": "build",
-            "problemMatcher": "$gcc"
+            "problemMatcher": []
         },
         {
-            "type": "shell",
+            "type": "cmake",
             "label": "Build DASH",
-            "command": "cmake",
-            "args": ["--build", "build/Debug", "--target", "DASH"],
+            "command": "build",
+            "targets": ["DASH"],
+            "preset": "Debug",
             "group": "build",
-            "problemMatcher": "$gcc"
+            "problemMatcher": []
         },
         {
-            "type": "shell",
+            "type": "cmake",
             "label": "Build DART",
-            "command": "cmake",
-            "args": ["--build", "build/Debug", "--target", "DART"],
+            "command": "build",
+            "targets": ["DART"],
+            "preset": "Debug",
             "group": "build",
-            "problemMatcher": "$gcc"
+            "problemMatcher": []
         },
         {
-            "type": "shell",
+            "type": "cmake",
             "label": "Build DCU",
-            "command": "cmake",
-            "args": ["--build", "build/Debug", "--target", "DCU"],
+            "command": "build",
+            "targets": ["DCU"],
+            "preset": "Debug",
             "group": "build",
-            "problemMatcher": "$gcc"
+            "problemMatcher": []
         },
         {
-            "type": "shell",
+            "type": "cmake",
             "label": "Build DCU_Receiver",
-            "command": "cmake",
-            "args": ["--build", "build/Debug", "--target", "DCU_Receiver"],
+            "command": "build",
+            "targets": ["DCU_Receiver"],
+            "preset": "Debug",
             "group": "build",
-            "problemMatcher": "$gcc"
+            "problemMatcher": []
         },
         {
-            "type": "shell",
+            "type": "cmake",
             "label": "Build LVPDB",
-            "command": "cmake",
-            "args": ["--build", "build/Debug", "--target", "LVPDB"],
+            "command": "build",
+            "targets": ["LVPDB"],
+            "preset": "Debug",
             "group": "build",
-            "problemMatcher": "$gcc"
+            "problemMatcher": []
         },
         {
-            "type": "shell",
+            "type": "cmake",
             "label": "Build PCU",
-            "command": "cmake",
-            "args": ["--build", "build/Debug", "--target", "PCU"],
+            "command": "build",
+            "targets": ["PCU"],
+            "preset": "Debug",
             "group": "build",
-            "problemMatcher": "$gcc"
+            "problemMatcher": []
         },
         {
-            "type": "shell",
+            "type": "cmake",
             "label": "Build Sensor_Nodes (FRONT)",
-            "command": "cmake",
-            "args": ["--build", "build/Debug", "--target", "Sensor_Nodes_FRONT"],
+            "command": "build",
+            "targets": ["Sensor_Nodes_FRONT"],
+            "preset": "Debug",
             "group": "build",
-            "problemMatcher": "$gcc",
+            "problemMatcher": [],
             "detail": "Builds build/Debug/Sensor_Nodes/Sensor_Nodes_FRONT.elf"
         },
         {
-            "type": "shell",
+            "type": "cmake",
             "label": "Build Sensor_Nodes (REAR)",
-            "command": "cmake",
-            "args": ["--build", "build/Debug", "--target", "Sensor_Nodes_REAR"],
+            "command": "build",
+            "targets": ["Sensor_Nodes_REAR"],
+            "preset": "Debug",
             "group": "build",
-            "problemMatcher": "$gcc",
+            "problemMatcher": [],
             "detail": "Builds build/Debug/Sensor_Nodes/Sensor_Nodes_REAR.elf"
         },
         {
-            "type": "shell",
+            "type": "cmake",
             "label": "Build UART",
-            "command": "cmake",
-            "args": ["--build", "build/Debug", "--target", "UART"],
+            "command": "build",
+            "targets": ["UART"],
+            "preset": "Debug",
             "group": "build",
-            "problemMatcher": "$gcc"
+            "problemMatcher": []
         },
         {
-            "type": "shell",
+            "type": "cmake",
             "label": "Build UART_TEST",
-            "command": "cmake",
-            "args": ["--build", "build/Debug", "--target", "UART_TEST"],
+            "command": "build",
+            "targets": ["UART_TEST"],
+            "preset": "Debug",
             "group": "build",
-            "problemMatcher": "$gcc"
+            "problemMatcher": []
         },
         {
             "type": "cmake",
@@ -109,15 +120,16 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": "$gcc"
+            "problemMatcher": []
         },
         {
-            "type": "shell",
+            "type": "cmake",
             "label": "Build All",
-            "command": "cmake",
-            "args": ["--build", "build/Debug"],
+            "command": "build",
+            "targets": ["all"],
+            "preset": "Debug",
             "group": "build",
-            "problemMatcher": "$gcc"
+            "problemMatcher": []
         },
         {
             "type": "shell",
@@ -143,8 +155,8 @@
         {
             "type": "shell",
             "label": "CubeProg: List all available communication interfaces",
-            "command": "STM32_Programmer_CLI",
-            "args": ["--list"],
+            "command": "cube",
+            "args": ["programmer", "--list"],
             "options": {
                 "cwd": "${workspaceFolder}"
             },

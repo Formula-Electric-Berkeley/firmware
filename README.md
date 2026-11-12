@@ -76,7 +76,7 @@ For first-time setup, run the setup script:
 ```
 
 This script:
-- Verifies toolchain installation (ARM GCC, CMake, Ninja)
+- Installs the toolchain versions pinned in `.settings/bundles.store.json` (via `cube`)
 - Initializes git submodules
 - Installs pre-commit hooks
 - Configures CMake
@@ -86,85 +86,45 @@ This script:
 
 ### Required
 
-- **STM32CubeCLT** -- bundles ARM GCC, CMake, Ninja, and STM32_Programmer_CLI
-  - Download from [ST website](https://www.st.com/en/development-tools/stm32cubeclt.html)
+- **VS Code + STM32Cube for Visual Studio Code extension** (`stmicroelectronics.stm32-vscode-extension`, recommended automatically when you open the repo). It provides the `cube` CLI, which downloads CMake, Ninja, the GNU tools for STM32 and STM32CubeProgrammer as versioned *bundles*.
+- **Git** (on Windows, [Git for Windows](https://git-scm.com/download/win) for Git Bash)
+
+STM32CubeCLT is **not** required. The toolchain versions are pinned once, at the repo root, in `.settings/bundles.store.json`; VS Code and the scripts in `scripts/` both use those pins.
 
 ### Optional
 
 - **STM32CubeMX** -- for modifying `.ioc` peripheral configurations
 - **Python 3** -- only needed to regenerate CAN message definitions; dependencies are managed automatically (see [CAN Library](#can-library))
-- **clang-format** -- for code formatting (enforced in CI)
+- **clang-format** -- not installed by hand; `./scripts/format.sh` fetches the pinned 19.1.2 into `build/.tools/` (needs Python 3)
 
 ### Environment Setup
 
-Set `CUBE_BUNDLE_PATH` to your STM32CubeCLT install directory. This is required for VSCode IntelliSense to find the cross-compiler's system headers (`stdio.h`, etc.).
+1. Install the extension and open the repo folder in VS Code once, so it installs the `cube` CLI.
+2. Put `cube` on your terminal PATH (it lives in `~/.local/stm32cube/bin`):
+   ```bash
+   # zsh / bash (~/.zshrc, ~/.bashrc)
+   export PATH="$HOME/.local/stm32cube/bin:$PATH"
+   # fish
+   fish_add_path ~/.local/stm32cube/bin
+   ```
+3. Download the pinned bundles from the repo root:
+   ```bash
+   cube bundle install --project
+   ```
 
-`./scripts/setup.sh` configures this automatically on both macOS and Windows Git Bash — it globs the install directory, detects your shell (`zsh` vs `bash`), and appends the export to the right profile file. If you prefer to set it manually, add to your shell profile:
-
-```bash
-# macOS (zsh is the default since Catalina — use ~/.zshrc)
-export CUBE_BUNDLE_PATH=/opt/ST/STM32CubeCLT_1.19.0   # or wherever the installer placed it
-
-# Windows Git Bash (use ~/.bashrc)
-export CUBE_BUNDLE_PATH=/c/ST/STM32CubeCLT_1.19.0
-```
-
-Then restart your terminal (and VSCode, if open).
+Do **not** set `CUBE_BUNDLE_PATH`. Older versions of this README and `setup.sh` pointed it at the STM32CubeCLT folder, which hides every bundle from `cube` (`No such command 'cmake'`) and makes VS Code's CMake configure fail. If your shell profile has an `export CUBE_BUNDLE_PATH=...` line (or a `# STM32CubeCLT tools (added by FEB setup script)` block), delete it and fully quit and reopen VS Code.
 
 ### Verify Your Setup
 
 ```bash
-arm-none-eabi-gcc --version
-cmake --version    # 3.22+
-ninja --version
-echo $CUBE_BUNDLE_PATH   # should print your CubeCLT path
+cube --resolve cmake        # pinned CMake, plus Ninja/GCC on its PATH
+cube --resolve programmer   # pinned STM32CubeProgrammer
+./scripts/build.sh --check  # should report "Toolchain source: STM32Cube bundles"
 ```
 
 ### Windows Development
 
-The repository scripts are bash-based and work with Git Bash (included with [Git for Windows](https://git-scm.com/download/win)).
-
-**Quick Setup:**
-
-1. **Install Git for Windows** -- includes Git Bash terminal
-2. **Install STM32CubeCLT** to default location (`C:\ST\STM32CubeCLT`)
-   - Download from [ST website](https://www.st.com/en/development-tools/stm32cubeclt.html)
-3. **Run setup script** in Git Bash:
-   ```bash
-   ./scripts/setup.sh
-   ```
-   The script will detect STM32CubeCLT and offer to configure your PATH automatically.
-
-**Manual Setup (if needed):**
-
-If the automatic setup doesn't work, manually add to `~/.bashrc`:
-```bash
-# STM32CubeCLT tools (adjust path if installed elsewhere)
-export PATH="/c/ST/STM32CubeCLT/GNU-tools-for-STM32/bin:$PATH"
-export PATH="/c/ST/STM32CubeCLT/CMake/bin:$PATH"
-export PATH="/c/ST/STM32CubeCLT/Ninja/bin:$PATH"
-export PATH="/c/ST/STM32CubeCLT/STM32CubeProgrammer/bin:$PATH"
-export CUBE_BUNDLE_PATH="/c/ST/STM32CubeCLT"
-```
-
-If `~/.bash_profile` doesn't exist, create it to source `~/.bashrc`:
-```bash
-# ~/.bash_profile
-if [ -f "$HOME/.bashrc" ]; then
-    source "$HOME/.bashrc"
-fi
-```
-
-Then restart Git Bash or run `source ~/.bashrc`.
-
-**Verify tools are found:**
-```bash
-ninja --version
-arm-none-eabi-gcc --version
-cmake --version
-```
-
-**Alternative:** Use [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) with Ubuntu for a native Linux development experience on Windows.
+The repository scripts are bash-based and work with Git Bash. The steps above apply unchanged; run `./scripts/setup.sh` from Git Bash. Alternatively, use [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) with Ubuntu.
 
 ## STM32CubeMX Code Generation
 
@@ -190,21 +150,12 @@ The script can:
 
 The project uses `clang-format` with an LLVM-based style (2-space indent, 120-char lines, Allman braces). The `.clang-format` file in the repo root is automatically detected by editors and tools.
 
-### Format on Save (VSCode)
+Everything formats with **clang-format 19.1.2**:
 
-1. Install the **C/C++** extension (Microsoft) or **clang-format** extension
-2. Add to your `.vscode/settings.json` (workspace or user):
-   ```json
-   {
-     "editor.formatOnSave": true,
-     "[c]": {
-       "editor.defaultFormatter": "ms-vscode.cpptools"
-     },
-     "[cpp]": {
-       "editor.defaultFormatter": "ms-vscode.cpptools"
-     }
-   }
-   ```
+- **VS Code** formats C and C++ on save with the STM32Cube clangd extension (`starm-clangd` 19.1.2, pinned in `.settings/bundles.store.json`). This is already configured in the workspace settings.
+- **`./scripts/format.sh`, pre-commit and CI** use the matching `clang-format==19.1.2` from PyPI, installed automatically into `build/.tools/` (requires `python3`).
+
+If you bump the `st-arm-clangd` pin, update `CLANG_FORMAT_VERSION` in `scripts/format.sh` to the same version.
 
 ### Format Script
 
@@ -333,17 +284,17 @@ The `scripts/flash.sh` script provides an easy interface for flashing boards wit
 
 > **Note:** If you downloaded `flash.sh` from a GitHub release, make it executable first: `chmod +x flash.sh`
 
-The script checks for STM32CubeCLT installation and provides platform-specific setup instructions if needed. If the firmware hasn't been built yet, it offers to build it for you.
+The script runs the pinned STM32CubeProgrammer bundle through `cube` (falling back to `STM32_Programmer_CLI` on PATH) and prints setup instructions if neither is available. If the firmware hasn't been built yet, it offers to build it for you.
 
-### Using STM32_Programmer_CLI Directly
+### Using STM32CubeProgrammer Directly
 
 ```bash
-STM32_Programmer_CLI --connect port=swd --download build/Debug/LVPDB/LVPDB.elf -hardRst -rst --start
+cube programmer --connect port=swd --download build/Debug/LVPDB/LVPDB.elf -hardRst -rst --start
 ```
 
 ### Using VSCode
 
-If you have the STM32 VSCode extension installed, use the **CubeProg: Flash project (SWD)** task (defined in `LVPDB/.vscode/tasks.json`).
+If you have the STM32 VSCode extension installed, use the **CubeProg: Flash project (SWD)** task (defined in `.vscode/tasks.json`).
 
 ## CAN Library
 

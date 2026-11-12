@@ -8,7 +8,7 @@ Everyday tooling for the FEB_FIRMWARE_SN5 repo. All scripts are POSIX `bash` and
 |---|---|---|
 | [`setup.sh`](setup.sh) | First-time dev environment setup | `./scripts/setup.sh` |
 | [`build.sh`](build.sh) | Build firmware (interactive / batch / release) | `./scripts/build.sh -b BMS` |
-| [`flash.sh`](flash.sh) | Flash an ELF/bin to a board via STM32_Programmer_CLI | `./scripts/flash.sh -b BMS` |
+| [`flash.sh`](flash.sh) | Flash an ELF/bin to a board via the pinned STM32CubeProgrammer bundle | `./scripts/flash.sh -b BMS` |
 | [`serial.sh`](serial.sh) | Open the board's USB-VCP serial console at 115200 (tio wrapper; one-shot `--exec`/`--read` modes for verification) | `./scripts/serial.sh -b BMS` |
 | [`format.sh`](format.sh) | Run `clang-format` across `Core/User/` | `./scripts/format.sh --check` |
 | [`setup-hooks.sh`](setup-hooks.sh) | Install / remove pre-commit hooks | `./scripts/setup-hooks.sh` |
@@ -26,16 +26,13 @@ Everyday tooling for the FEB_FIRMWARE_SN5 repo. All scripts are POSIX `bash` and
 ./scripts/setup.sh -h
 ```
 
-Steps: toolchain check → submodule init → pre-commit install → CMake configure → initial build.
+Steps: install pinned bundles via `cube` → submodule init → pre-commit install → CMake configure → initial build.
 
-**Cross-platform behavior:**
+Requires the `cube` CLI from the STM32Cube for VS Code extension (see the top-level [README.md](../README.md#environment-setup)). The script runs `cube bundle install --project` at the repo root and does **not** edit any shell profile. CI / non-TTY runs fall back to safe defaults for every prompt.
 
-- **macOS** — globs `/opt/ST/STM32CubeCLT*`, `/Applications/STMicroelectronics/STM32CubeCLT*`, and `$HOME/STM32CubeCLT*`. Picks the highest version via `sort -V`. Detects your shell (`zsh` vs `bash`) and writes the exports to `~/.zshrc` or `~/.bash_profile` accordingly.
-- **Windows Git Bash** — globs `/c/ST/STM32CubeCLT*` and `/c/Program Files/STMicroelectronics/STM32CubeCLT*`. Writes exports to `~/.bashrc` and creates `~/.bash_profile` to source it for login shells.
-- **Linux** — toolchain is expected on `PATH` (from `apt` or a manual install). The script prints install instructions but does not auto-configure profile files.
-- **CI / non-TTY** — all `read` prompts fall back to safe defaults when stdin is not a terminal, so `CI=1 ./scripts/setup.sh --quick < /dev/null` runs to completion.
+## Toolchain resolution (`lib/cube-tools.sh`)
 
-Re-running the script is safe — the `# STM32CubeCLT tools (added by FEB setup script)` marker in your profile is used as a write-guard.
+`build.sh`, `flash.sh` and `setup.sh` source [`lib/cube-tools.sh`](lib/cube-tools.sh). It finds `cube` (on PATH, in `~/.local/stm32cube/bin`, or inside the VS Code extension), asks `cube --resolve` for the PATH of the bundles pinned in `.settings/bundles.store.json`, and puts them first on PATH. The scripts then call `cmake`, `ninja`, `arm-none-eabi-*` and `STM32_Programmer_CLI` by name, so they use exactly the versions VS Code uses. Without `cube` (e.g. CI) they fall back to whatever is on PATH; `build.sh` prints which source it used. It also warns if `CUBE_BUNDLE_PATH` still points at an STM32CubeCLT folder.
 
 ## `build.sh` — Build Firmware
 
@@ -64,7 +61,7 @@ It also refuses to build when a submodule isn't checked out at the commit the br
 ./scripts/flash.sh -h
 ```
 
-Auto-discovers `STM32_Programmer_CLI` by globbing install locations for macOS (CubeProgrammer app bundle + CubeCLT), Linux (`/opt/st/stm32cubeclt*`), and Windows Git Bash (`/c/ST/STM32CubeCLT*/...`, `/c/Program Files/STMicroelectronics/STM32CubeCLT*/...`).
+Uses the pinned STM32CubeProgrammer bundle via `lib/cube-tools.sh`, falling back to `STM32_Programmer_CLI` on PATH (release zips ship `lib/cube-tools.sh` alongside `flash.sh`).
 
 Internally calls [`flash-patcher.py`](flash-patcher.py) to stamp the ELF's `.feb_flash_info` section with flash timestamp and flasher identity before programming.
 
@@ -100,7 +97,7 @@ Auto-detects ports on macOS (`/dev/cu.usbmodem*`, `/dev/cu.usbserial*`, `/dev/cu
 ./scripts/format.sh --check   # CI mode; exits 1 if any file would change
 ```
 
-Uses the repo's top-level `.clang-format` (LLVM base, 2-space indent, 120 columns, Allman braces). Finds `clang-format` on PATH, then falls back to common Homebrew (`/opt/homebrew/opt/llvm@<ver>/bin`, `/usr/local/opt/llvm@<ver>/bin`) and Windows (`/c/Program Files/LLVM/bin/clang-format.exe`) locations.
+Uses the repo's top-level `.clang-format` (LLVM base, 2-space indent, 120 columns, Allman braces) with clang-format **19.1.2**, the same version as the `st-arm-clangd` bundle VS Code formats with. Uses `clang-format` from PATH only if it is exactly that version; otherwise installs `clang-format==19.1.2` from PyPI into `build/.tools/` (requires `python3`). CI relies on the same bootstrap.
 
 ## `setup-hooks.sh` — Pre-commit Hooks
 
