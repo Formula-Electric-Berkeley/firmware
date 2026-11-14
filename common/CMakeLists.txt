@@ -11,7 +11,8 @@
 #   feb_log        - Logging with configurable output
 #   feb_console    - Command-line interface
 #   feb_commands   - Default system commands
-#   feb_can        - FreeRTOS-safe CAN communication
+#   feb_can        - FreeRTOS-safe CAN communication (C API, bxCAN boards)
+#   feb_can_cxx    - Newer C++ CAN publish/subscribe
 #   feb_tps        - TPS2482 power monitoring
 #   feb_rtos_utils - RTOS utility macros (REQUIRE_RTOS_HANDLE, etc.)
 # ===========================================================================
@@ -24,6 +25,9 @@ add_subdirectory(FEB_Serial_Library)
 
 # CAN Library - FreeRTOS-safe CAN communication with registration/callback pattern
 add_subdirectory(FEB_CAN_Library)
+
+# CAN (C++) - typed publish/subscribe, bxCAN and FDCAN transports
+add_subdirectory(FEB_CAN/Library)
 
 # TPS Library - TPS2482 power monitoring with FreeRTOS support
 add_subdirectory(FEB_TPS_Library)

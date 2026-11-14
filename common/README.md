@@ -8,6 +8,7 @@ One README per library:
 
 - [FEB_Serial_Library](FEB_Serial_Library/README.md) — UART + Log + Console + Commands + String_Utils + Version, with the `feb_io` umbrella target
 - [FEB_CAN_Library](FEB_CAN_Library/README.md) — runtime CAN dispatch (`feb_can`)
+- [FEB_CAN](FEB_CAN/Library/README.md) — C++ CAN publish/subscribe over bxCAN or FDCAN (`feb_can_cxx`)
 - [FEB_CAN_Definitions](FEB_CAN_Definitions/README.md) — CAN message definitions and code generator
 - [FEB_TPS_Library](FEB_TPS_Library/README.md) — TPS2482 power-monitor driver (`feb_tps`)
 - [FEB_Time_Library](FEB_Time_Library/README.md) — 64-bit microsecond monotonic clock (`feb_time`)
@@ -26,6 +27,7 @@ One README per library:
 | `feb_time` | Time | 64-bit microsecond monotonic clock |
 | `feb_rtos_utils` | RTOS | `REQUIRE_RTOS_HANDLE` fail-fast macro |
 | `feb_can` | CAN | FreeRTOS-safe CAN with registration/callback pattern |
+| `feb_can_cxx` | CAN | C++ publish/subscribe, bxCAN or FDCAN; replaces `feb_can` board by board |
 | `feb_tps` | TPS2482 | Power monitoring IC driver |
 | `feb_io` | Umbrella | Links `feb_uart`, `feb_log`, `feb_console`, `feb_commands`, `feb_string_utils`, `feb_time`, `feb_version` |
 
@@ -160,6 +162,8 @@ common/
 │   └── FEB_Version/            # feb_version
 │
 ├── FEB_CAN_Library/            # feb_can (runtime dispatcher)
+├── FEB_CAN/
+│   └── Library/                # feb_can_cxx (C++ replacement)
 │   ├── Inc/
 │   ├── Src/
 │   ├── CMakeLists.txt
