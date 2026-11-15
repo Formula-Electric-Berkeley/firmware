@@ -1,6 +1,6 @@
 /**
  ******************************************************************************
- * @file           : FEB_Main.c
+ * @file           : PCU_Main.cpp
  * @brief          : PCU Application - Console and Communication
  * @author         : Formula Electric @ Berkeley
  ******************************************************************************

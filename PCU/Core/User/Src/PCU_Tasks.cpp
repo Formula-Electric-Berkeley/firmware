@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
- * @file           : DASH_Tasks.cpp
- * @brief          : Every FreeRTOS task body on DASH
+ * @file           : PCU_Tasks.cpp
+ * @brief          : Every FreeRTOS task body on PCU
  * @author         : Formula Electric @ Berkeley
  ******************************************************************************
  */
@@ -9,7 +9,7 @@
 #include "PCU_ADC.hpp"
 #include "PCU_CAN.h"
 #include "PCU_Commands.h"
-#include "App/PCU_Torque.cpp"
+#include "PCU_Torque.hpp"
 
 #include "cmsis_os2.h"
 #include "feb_can_tasks.hpp"

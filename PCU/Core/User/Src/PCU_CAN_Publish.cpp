@@ -41,7 +41,7 @@ bool fill_positions_brake(feb_can_brake_t &m)
   return true;
 }
 
-bool fill_bspd(feb_can_bspd_state &m)
+bool fill_bspd(feb_can_bspd_state_t &m)
 {
   m.bspd_state = 0;
   return true;

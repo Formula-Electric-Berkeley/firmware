@@ -255,7 +255,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     PA1     ------> ADC1_IN1
     PC4     ------> ADC1_IN14
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
+    GPIO_InitStruct.Pin = BP2_Buf_Pin|BP1_Buf_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -305,7 +305,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     PA6     ------> ADC2_IN6
     PA7     ------> ADC2_IN7
     */
-    GPIO_InitStruct.Pin = Current_Sense_Pin|Shutdown_In_Pin|Pre_Timing_Trip_Sense_Pin;
+    GPIO_InitStruct.Pin = IVL_DOWN_Pin|SD_MB_Pin|PTS_HALF_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -354,12 +354,12 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     PA0-WKUP     ------> ADC3_IN0
     PA1     ------> ADC3_IN1
     */
-    GPIO_InitStruct.Pin = BSPD_Indicator_Pin|BSPD_Reset_Pin|Acceleration_Pedal_2_Pin|Acceleration_Pedal_1_Pin;
+    GPIO_InitStruct.Pin = BSPD_Indicator_Pin|BSPD_Reset_Pin|AP2_Buf_Pin|AP1_Buf_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
+    GPIO_InitStruct.Pin = BP2_Buf_Pin|BP1_Buf_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -408,7 +408,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
     PA1     ------> ADC1_IN1
     PC4     ------> ADC1_IN14
     */
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0|GPIO_PIN_1);
+    HAL_GPIO_DeInit(GPIOA, BP2_Buf_Pin|BP1_Buf_Pin);
 
     HAL_GPIO_DeInit(Brake_Input_GPIO_Port, Brake_Input_Pin);
 
@@ -441,7 +441,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
     PA6     ------> ADC2_IN6
     PA7     ------> ADC2_IN7
     */
-    HAL_GPIO_DeInit(GPIOA, Current_Sense_Pin|Shutdown_In_Pin|Pre_Timing_Trip_Sense_Pin);
+    HAL_GPIO_DeInit(GPIOA, IVL_DOWN_Pin|SD_MB_Pin|PTS_HALF_Pin);
 
     /* ADC2 DMA DeInit */
     HAL_DMA_DeInit(adcHandle->DMA_Handle);
@@ -475,9 +475,9 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
     PA0-WKUP     ------> ADC3_IN0
     PA1     ------> ADC3_IN1
     */
-    HAL_GPIO_DeInit(GPIOC, BSPD_Indicator_Pin|BSPD_Reset_Pin|Acceleration_Pedal_2_Pin|Acceleration_Pedal_1_Pin);
+    HAL_GPIO_DeInit(GPIOC, BSPD_Indicator_Pin|BSPD_Reset_Pin|AP2_Buf_Pin|AP1_Buf_Pin);
 
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0|GPIO_PIN_1);
+    HAL_GPIO_DeInit(GPIOA, BP2_Buf_Pin|BP1_Buf_Pin);
 
     /* ADC3 DMA DeInit */
     HAL_DMA_DeInit(adcHandle->DMA_Handle);

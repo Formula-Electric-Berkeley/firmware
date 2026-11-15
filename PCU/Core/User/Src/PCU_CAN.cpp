@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
- * @file           : DASH_CAN.cpp
- * @brief          : DASH CAN bring-up and the RX / TX tasks
+ * @file           : PCU_CAN.cpp
+ * @brief          : PCU CAN bring-up and the RX / TX tasks
  * @author         : Formula Electric @ Berkeley
  ******************************************************************************
  */
