@@ -16,4 +16,6 @@ void PCU_CAN_Init();
 
 bool PCU_CAN_IsReady(void);
 
+bool PCU_CAN_IsR2D(void);
+
 #endif /* PCU_CAN_H */

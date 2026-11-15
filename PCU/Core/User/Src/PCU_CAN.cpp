@@ -8,11 +8,15 @@
 
 #include "PCU_CAN.h"
 #include "cmsis_os2.h"
+#include "feb_bms_state.h"
 #include "feb_can_subscriber.hpp"
 #include "feb_log.h"
 #include "main.h"
 
-extern CAN_HandleTypeDef hcan2;
+namespace fc = feb::can;
+namespace fm = feb::can::msg;
+
+extern CAN_HandleTypeDef hcan1;
 
 extern osMessageQueueId_t canTxQueueHandle;
 extern osMessageQueueId_t canRxQueueHandle;
@@ -30,11 +34,17 @@ bool PCU_CAN_IsReady()
   return can_ready;
 }
 
+bool PCU_CAN_IsR2D()
+{
+  const auto &bms = fc::rx<fm::BmsState>;
+  return bms.fresh() && bms.v().bms_state == BMS_STATE_DRIVE;
+}
+
 void PCU_CAN_Init()
 {
   const FEB_CAN_Config_t cfg = {
-      .hcan1 = nullptr,
-      .hcan2 = &hcan2,
+      .hcan1 = &hcan1,
+      .hcan2 = nullptr,
       .get_tick_ms = HAL_GetTick,
 #if FEB_CAN_USE_FREERTOS
       .tx_queue = canTxQueueHandle,

@@ -74,7 +74,7 @@ void PCU_Init(void)
   /* Startup banner */
   static const char banner[] = "\r\n"
                                "========================================\r\n"
-                               "           DASH Console Ready\r\n"
+                               "           Powertrain Control Unit\r\n"
                                "========================================\r\n"
                                "Type 'help' for available commands\r\n"
                                "\r\n";
