@@ -47,4 +47,4 @@ void PCU_Tick()
   }
 }
 
-//   if (PCU_CAN_IsR2D() && !apps_fault)
+//   if (PCU_CAN_IsR2D() && !apps_fault) <- implement when BMS is ready

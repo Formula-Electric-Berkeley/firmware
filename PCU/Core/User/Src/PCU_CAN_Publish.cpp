@@ -61,9 +61,23 @@ bool fill_pedal_voltages(feb_can_pcu_pedal_voltages_t &m)
   return true;
 }
 
+bool fill_torque_command(feb_can_m192_command_message_t &m)
+{
+  m.vcu_inv_torque_command = ((apps1.get_percentage() + apps2.get_percentage()) / 2.0f) * 220;
+  m.vcu_inv_speed_command = 0;
+  m.vcu_inv_direction_command = 0;
+  m.vcu_inv_inverter_enable = 0;
+  m.vcu_inv_inverter_discharge = 0;
+  m.vcu_inv_speed_mode_enable = 0;
+  m.vcu_inv_rolling_counter = 0;
+  m.vcu_inv_torque_limit_command = 0;
+  return true;
+}
+
 fc::Publisher<fm::PcuRawAcc> positions_accel_tx{fill_positions_accel};
 fc::Publisher<fm::Brake> positions_brake_tx{fill_positions_brake};
 fc::Publisher<fm::BspdState> bspd_tx{fill_bspd};
 fc::Publisher<fm::PcuHeartbeat> heartbeat_tx{fill_heartbeat};
 fc::Publisher<fm::PcuPedalVoltages> pedal_voltages_tx{fill_pedal_voltages};
+fc::Publisher<fm::M192CommandMessage> torque_command_tx{fill_torque_command};
 } // namespace
