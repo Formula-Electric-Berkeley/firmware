@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * @file           : PCU_Torque.cpp
- * @brief          : Every FreeRTOS task body on DASH
+ * @brief          : Every FreeRTOS task body on PCU
  * @author         : Formula Electric @ Berkeley
  ******************************************************************************
  */

@@ -9,7 +9,7 @@
 #include "PCU_ADC.hpp"
 #include "PCU_CAN.h"
 #include "PCU_Commands.h"
-#include "PCU_Torque.hpp"
+#include "App/PCU_Torque.h"
 
 #include "cmsis_os2.h"
 #include "feb_can_tasks.hpp"
