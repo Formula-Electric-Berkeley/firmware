@@ -33,16 +33,15 @@
 /* USER CODE END 1 */
 
 /** Configure pins
+     PB7   ------> USART1_RX
      PA14 (JTCK/SWCLK)   ------> DEBUG_JTCK-SWCLK
-     PA8   ------> RCC_MCO
      PC14-OSC32_IN (PC14)   ------> RCC_OSC32_IN
-     PB5   ------> PWR_WKUP6
      PA12   ------> USB_OTG_HS_DP
      PA11   ------> USB_OTG_HS_DM
      PC15-OSC32_OUT (PC15)   ------> RCC_OSC32_OUT
      PA13 (JTMS/SWDIO)   ------> DEBUG_JTMS-SWDIO
-     PA10   ------> USB_OTG_HS_ID
      PH0-OSC_IN (PH0)   ------> RCC_OSC_IN
+     PC5   ------> USART3_RX
 */
 void MX_GPIO_Init(void)
 {
@@ -73,13 +72,31 @@ void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(R_RST_GPIO_Port, R_RST_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : PA8 */
-  GPIO_InitStruct.Pin = GPIO_PIN_8;
+  /*Configure GPIO pin : PB7 */
+  GPIO_InitStruct.Pin = GPIO_PIN_7;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : SWITCH1_B_Pin SWITCH1_A_Pin */
+  GPIO_InitStruct.Pin = SWITCH1_B_Pin|SWITCH1_A_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : SWITCH3_B_Pin SWITCH4_A_Pin */
+  GPIO_InitStruct.Pin = SWITCH3_B_Pin|SWITCH4_A_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : SWITCH2_A_Pin BUTTON2_Pin SWITCH2_B_Pin BUTTON1_Pin */
+  GPIO_InitStruct.Pin = SWITCH2_A_Pin|BUTTON2_Pin|SWITCH2_B_Pin|BUTTON1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LCD_DISP_RESET_Pin */
   GPIO_InitStruct.Pin = LCD_DISP_RESET_Pin;
@@ -88,6 +105,12 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LCD_DISP_RESET_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : SWITCH3_A_Pin SWITCH4_B_Pin */
+  GPIO_InitStruct.Pin = SWITCH3_A_Pin|SWITCH4_B_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
+
   /*Configure GPIO pins : PA12 PA11 */
   GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_11;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -95,20 +118,18 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : BUTTON3_Pin R_INT_Pin */
+  GPIO_InitStruct.Pin = BUTTON3_Pin|R_INT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
   /*Configure GPIO pin : CTP_RST_Pin */
   GPIO_InitStruct.Pin = CTP_RST_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(CTP_RST_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PA10 */
-  GPIO_InitStruct.Pin = GPIO_PIN_10;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF10_USB_HS;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : CTP_INT_Pin */
   GPIO_InitStruct.Pin = CTP_INT_Pin;
@@ -136,11 +157,19 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(R_RST_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : R_INT_Pin */
-  GPIO_InitStruct.Pin = R_INT_Pin;
+  /*Configure GPIO pin : BUTTON4_Pin */
+  GPIO_InitStruct.Pin = BUTTON4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(R_INT_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(BUTTON4_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PC5 */
+  GPIO_InitStruct.Pin = GPIO_PIN_5;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Alternate = GPIO_AF7_USART3;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI6_IRQn, 5, 0);

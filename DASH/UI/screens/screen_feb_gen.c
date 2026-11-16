@@ -83,10 +83,27 @@ lv_obj_t * screen_feb_create(void)
         lv_obj_set_style_text_font(h1_0, font_guage_lg, 0);
         lv_obj_set_style_text_color(h1_0, lv_color_hex(0xffffff), 0);
 
-        lv_obj_t * row_1 = row_create(column_0, 0, 0, 0, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+        lv_obj_t * row_1 = row_create(column_0, 0, 10, 0, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_START);
         lv_obj_set_width(row_1, lv_pct(100));
         lv_obj_t * button_0 = button_create(row_1, "other page", NULL, COLOR_ACCENT, COLOR_ACCENT_TEXT, RADIUS_DEFAULT);
         lv_obj_add_screen_create_event(button_0, LV_EVENT_CLICKED, screen_components_create, LV_SCREEN_LOAD_ANIM_MOVE_LEFT, 2000, 0);
+
+        lv_obj_t * text_0 = text_create(row_1, "Body text");
+        lv_obj_set_style_text_color(text_0, lv_color_hex(0xFFFFFF), 0);
+        lv_obj_set_style_text_font(text_0, font_h4, 0);
+        lv_label_bind_text(text_0, subject_funny_text, NULL);
+
+        lv_obj_t * row_2 = row_create(column_0, 0, 25, 0, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_START);
+        lv_obj_set_width(row_2, lv_pct(100));
+        lv_obj_t * text_1 = text_create(row_2, "Body text");
+        lv_obj_set_style_text_color(text_1, lv_color_hex(0xFFFFFF), 0);
+        lv_obj_set_style_text_font(text_1, font_h4, 0);
+        lv_label_bind_text(text_1, subject_switches_on, "On position: %d%");
+
+        lv_obj_t * text_2 = text_create(row_2, "Body text");
+        lv_obj_set_style_text_color(text_2, lv_color_hex(0xFFFFFF), 0);
+        lv_obj_set_style_text_font(text_2, font_h4, 0);
+        lv_label_bind_text(text_2, subject_switches_off, "Off position: %d%");
 
         the_root = lv_obj_0;
     }

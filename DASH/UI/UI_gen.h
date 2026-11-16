@@ -257,6 +257,9 @@ extern lv_subject_t * subject_brightness;
 extern lv_subject_t * subject_show_keyboard;
 extern lv_subject_t * subject_wheel_speed;
 extern lv_subject_t * subject_torque_percent;
+extern lv_subject_t * subject_funny_text;
+extern lv_subject_t * subject_switches_on;
+extern lv_subject_t * subject_switches_off;
 
 /**********************
  * GLOBAL PROTOTYPES

@@ -7,6 +7,7 @@
  */
 
 #include "DASH_UI.h"
+#include "App/DASH_IO.h"
 #include "cmsis_os2.h"
 #include "feb_can.hpp"
 #include "lvgl/lvgl.h"
@@ -21,6 +22,7 @@ extern "C"
 
     for (;;)
     {
+      FEB_IO_Update_GPIO();
       uint32_t idle_ms = DASH_UI_Update();
       if (idle_ms == LV_NO_TIMER_READY || idle_ms > LV_DEF_REFR_PERIOD)
       {

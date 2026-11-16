@@ -197,6 +197,9 @@ lv_subject_t * subject_brightness;
 lv_subject_t * subject_show_keyboard;
 lv_subject_t * subject_wheel_speed;
 lv_subject_t * subject_torque_percent;
+lv_subject_t * subject_funny_text;
+lv_subject_t * subject_switches_on;
+lv_subject_t * subject_switches_off;
 
 /**********************
  *      MACROS
@@ -541,6 +544,15 @@ void UI_init_gen(const char * asset_path)
     lv_subject_set_int(subject_wheel_speed, 0);
     subject_torque_percent = lv_subject_create(LV_SUBJECT_TYPE_INT);
     lv_subject_set_int(subject_torque_percent, 50);
+    static char subject_funny_text_buf[UI_SUBJECT_STRING_LENGTH];
+    static char subject_funny_text_prev_buf[UI_SUBJECT_STRING_LENGTH];
+    subject_funny_text = lv_subject_create(LV_SUBJECT_TYPE_STRING);
+    lv_subject_set_string_buffer_static(subject_funny_text, subject_funny_text_buf, subject_funny_text_prev_buf, UI_SUBJECT_STRING_LENGTH);
+    lv_subject_set_string(subject_funny_text, "funny text");
+    subject_switches_on = lv_subject_create(LV_SUBJECT_TYPE_INT);
+    lv_subject_set_int(subject_switches_on, 0);
+    subject_switches_off = lv_subject_create(LV_SUBJECT_TYPE_INT);
+    lv_subject_set_int(subject_switches_off, 0);
 
     /*----------------
      * Translations
@@ -581,6 +593,9 @@ void UI_init_gen(const char * asset_path)
     lv_xml_register_subject(NULL, "subject_show_keyboard", subject_show_keyboard);
     lv_xml_register_subject(NULL, "subject_wheel_speed", subject_wheel_speed);
     lv_xml_register_subject(NULL, "subject_torque_percent", subject_torque_percent);
+    lv_xml_register_subject(NULL, "subject_funny_text", subject_funny_text);
+    lv_xml_register_subject(NULL, "subject_switches_on", subject_switches_on);
+    lv_xml_register_subject(NULL, "subject_switches_off", subject_switches_off);
 
     /* Register callbacks */
 

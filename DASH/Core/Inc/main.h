@@ -57,10 +57,26 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define SWITCH1_B_Pin GPIO_PIN_9
+#define SWITCH1_B_GPIO_Port GPIOG
+#define SWITCH3_B_Pin GPIO_PIN_8
+#define SWITCH3_B_GPIO_Port GPIOA
+#define SWITCH2_A_Pin GPIO_PIN_5
+#define SWITCH2_A_GPIO_Port GPIOB
+#define SWITCH1_A_Pin GPIO_PIN_10
+#define SWITCH1_A_GPIO_Port GPIOG
 #define LCD_DISP_RESET_Pin GPIO_PIN_7
 #define LCD_DISP_RESET_GPIO_Port GPIOH
+#define SWITCH3_A_Pin GPIO_PIN_5
+#define SWITCH3_A_GPIO_Port GPIOH
+#define BUTTON3_Pin GPIO_PIN_7
+#define BUTTON3_GPIO_Port GPIOC
 #define CTP_RST_Pin GPIO_PIN_3
 #define CTP_RST_GPIO_Port GPIOE
+#define SWITCH4_B_Pin GPIO_PIN_4
+#define SWITCH4_B_GPIO_Port GPIOH
+#define SWITCH4_A_Pin GPIO_PIN_10
+#define SWITCH4_A_GPIO_Port GPIOA
 #define CTP_INT_Pin GPIO_PIN_6
 #define CTP_INT_GPIO_Port GPIOE
 #define CTP_INT_EXTI_IRQn EXTI6_IRQn
@@ -70,10 +86,18 @@ void Error_Handler(void);
 #define USB_OVERCURRENT_GPIO_Port GPIOJ
 #define R_RST_Pin GPIO_PIN_4
 #define R_RST_GPIO_Port GPIOF
+#define BUTTON4_Pin GPIO_PIN_0
+#define BUTTON4_GPIO_Port GPIOI
+#define BUTTON2_Pin GPIO_PIN_1
+#define BUTTON2_GPIO_Port GPIOB
 #define R_CS_Pin GPIO_PIN_1
 #define R_CS_GPIO_Port GPIOG
+#define SWITCH2_B_Pin GPIO_PIN_10
+#define SWITCH2_B_GPIO_Port GPIOB
 #define R_INT_Pin GPIO_PIN_4
 #define R_INT_GPIO_Port GPIOC
+#define BUTTON1_Pin GPIO_PIN_15
+#define BUTTON1_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
