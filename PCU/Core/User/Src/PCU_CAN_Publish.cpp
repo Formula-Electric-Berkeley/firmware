@@ -23,7 +23,7 @@ bool fill_positions_accel(feb_can_pcu_raw_acc_t &m)
   m.acc0 = apps1.get_percentage();
   m.acc1 = apps2.get_percentage();
   m.accel = (m.acc0 + m.acc1) / 2.0f;
-  m.plausible = 0;
+  m.plausible = 0; // Populate with plausibility check.
   m.open_circuit = 0;
   m.short_circuit = 0;
   return true;
@@ -34,7 +34,7 @@ bool fill_positions_brake(feb_can_brake_t &m)
   m.brake1_pct = brake1.get_percentage();
   m.brake2_pct = brake2.get_percentage();
   m.brake_position = (m.brake1_pct + m.brake2_pct) / 2.0f;
-  m.plausible = 0;
+  m.plausible = 0; // Populate with plausibility check.
   m.brake_pressed = 0;
   m.bots_active = 0;
   m.brake_switch = 0;

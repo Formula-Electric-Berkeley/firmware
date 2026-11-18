@@ -125,7 +125,6 @@ bool Brake_Sensor::in_range()
   return raw >= BRAKE_MIN_VALID_RAW && raw <= BRAKE_MAX_VALID_RAW;
 }
 
-
 Brake_Sensor brake1(BRAKE1, MIN_BRAKE1, MAX_BRAKE1);
 Brake_Sensor brake2(BRAKE2, MIN_BRAKE2, MAX_BRAKE2);
 

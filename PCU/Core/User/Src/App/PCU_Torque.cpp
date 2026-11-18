@@ -27,7 +27,8 @@ uint16_t torque_command = 0;
 
 void PCU_Tick()
 {
-  uint32_t now = HAL_GetTick(); // gets the time in ms since boot
+  // HAL_GetTick() returns the time in ms since boot.
+  uint32_t now = HAL_GetTick();
   if ((now - last_sample_ms) < PCU_SAMPLE_PERIOD_MS)
   {
     return;
@@ -40,23 +41,25 @@ void PCU_Tick()
     last_plausible_ms = now;
   }
   apps_fault = (now - last_plausible_ms) > APPS_IMPLAUSIBILITY_TIME_MS;
-
-  torque_command = 0;
   if (!apps_fault)
   {
     torque_command = apps1.get_torque();
   }
-  //code for bse plausibility check
+
+  // Tandem code for BSE plausibility check to determine torque output.
   bool bse_plausible = brake1.in_range() && brake2.in_range();
-  if (bse_plausible){
+  if (bse_plausible)
+  {
     last_bse_plausible_ms = now;
   }
   brake_fault = (now - last_bse_plausible_ms) > BRAKE_IMPLAUSIBILITY_TIME_MS;
-  if(brake_fault){
+  if (brake_fault)
+  {
     torque_command = 0;
   }
-  
 }
-
-
 //   if (PCU_CAN_IsR2D() && !apps_fault) <- implement when BMS is ready
+
+// Todo: add a check for pedal divergence by more than 10 percent,
+// ensure fault latching is true, populate can messages,
+// kill torque when when accel and brakes are pressed at the same time.
