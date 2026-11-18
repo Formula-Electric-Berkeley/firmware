@@ -19,7 +19,9 @@ namespace
 {
 uint32_t last_sample_ms = 0;
 uint32_t last_plausible_ms = 0;
+uint32_t last_bse_plausible_ms = 0;
 bool apps_fault = false;
+bool brake_fault = false;
 uint16_t torque_command = 0;
 } // namespace
 
@@ -44,6 +46,14 @@ void PCU_Tick()
   {
     torque_command = apps1.get_torque();
   }
+  //code for bse plausibility check
+  bool bse_plausible = brake1.in_range() && brake2.in_range();
+  if (bse_plausible){
+    last_bse_plausible_ms = now;
+  }
+  brake_fault = (now - last_bse_plausible_ms) > BRAKE_IMPLAUSIBILITY_TIME_MS;
+  
 }
+
 
 //   if (PCU_CAN_IsR2D() && !apps_fault) <- implement when BMS is ready

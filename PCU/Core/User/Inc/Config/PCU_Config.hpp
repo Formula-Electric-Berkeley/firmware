@@ -11,6 +11,7 @@ constexpr float BRAKE_PRESSED_PCT = 0.10f;
 
 constexpr uint32_t PCU_SAMPLE_PERIOD_MS = 10;
 constexpr uint32_t APPS_IMPLAUSIBILITY_TIME_MS = 100;
+constexpr uint32_t BRAKE_IMPLAUSIBILITY_TIME_MS = 100;
 
 constexpr uint16_t UART_TX_BUF_SIZE = 512;
 constexpr uint16_t UART_RX_BUF_SIZE = 256;
