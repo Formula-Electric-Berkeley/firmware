@@ -52,6 +52,9 @@ void PCU_Tick()
     last_bse_plausible_ms = now;
   }
   brake_fault = (now - last_bse_plausible_ms) > BRAKE_IMPLAUSIBILITY_TIME_MS;
+  if(brake_fault){
+    torque_command = 0;
+  }
   
 }
 
