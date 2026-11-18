@@ -26,7 +26,6 @@ uint16_t torque_command = 0;
 void PCU_Tick()
 {
   uint32_t now = HAL_GetTick(); // gets the time in ms since boot
-  // uint32_t last_sample_ms = 0;
   if ((now - last_sample_ms) < PCU_SAMPLE_PERIOD_MS)
   {
     return;
@@ -38,7 +37,7 @@ void PCU_Tick()
   {
     last_plausible_ms = now;
   }
-  // apps_fault = (now - last_plausible_ms) > APPS_IMPLAUSIBILITY_TIME_MS;
+  apps_fault = (now - last_plausible_ms) > APPS_IMPLAUSIBILITY_TIME_MS;
 
   torque_command = 0;
   if (!apps_fault)
