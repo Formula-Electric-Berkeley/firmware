@@ -53,35 +53,35 @@ UART_HandleTypeDef huart2;
 osThreadId_t K3_CONTROLHandle;
 const osThreadAttr_t K3_CONTROL_attributes = {
     .name = "K3_CONTROL",
-    .stack_size = 128 * 4,
+    .stack_size = 1024,
     .priority = (osPriority_t)osPriorityNormal,
 };
 /* Definitions for FEET_CONTROL */
 osThreadId_t FEET_CONTROLHandle;
 const osThreadAttr_t FEET_CONTROL_attributes = {
     .name = "FEET_CONTROL",
-    .stack_size = 128 * 4,
+    .stack_size = 1024,
     .priority = (osPriority_t)osPriorityNormal,
 };
 /* Definitions for P_SENSE */
 osThreadId_t P_SENSEHandle;
 const osThreadAttr_t P_SENSE_attributes = {
     .name = "P_SENSE",
-    .stack_size = 128 * 4,
+    .stack_size = 1024,
     .priority = (osPriority_t)osPriorityNormal,
 };
 /* Definitions for STATE_READ */
 osThreadId_t STATE_READHandle;
 const osThreadAttr_t STATE_READ_attributes = {
     .name = "STATE_READ",
-    .stack_size = 256 * 4,
+    .stack_size = 1536,
     .priority = (osPriority_t)osPriorityNormal,
 };
 /* Definitions for TPS_HANDLER */
 osThreadId_t TPS_HANDLERHandle;
 const osThreadAttr_t TPS_HANDLER_attributes = {
     .name = "TPS_HANDLER",
-    .stack_size = 128 * 4,
+    .stack_size = 2048,
     .priority = (osPriority_t)osPriorityNormal,
 };
 /* Definitions for Pressure_Data */
