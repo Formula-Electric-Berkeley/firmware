@@ -25,7 +25,7 @@ bool fill_dash_state(feb_can_dash_state_t &m)
   m.button4 = state.button_4;
   m.switch1 = state.switch_accumulator_fans;
   m.switch2 = state.switch_coolant_pump;
-  m.switch3 = state.switch_logging;
+  m.switch3 = state.switch_radiator_fan;
   m.switch4 = state.switch_logging;
   m.buzzer = m.buzzer;
   m.ready_to_drive = m.ready_to_drive;

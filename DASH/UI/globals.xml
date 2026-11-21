@@ -777,16 +777,6 @@
 			value="50"
 			help="Current wheel speed big number"
 		/>
-		<string
-			name="subject_funny_text"
-			value="funny text"
-			help="Current wheel speed big number"
-		/>
-		<int
-			name="subject_switches_on"
-			value="0"
-			help="Current wheel speed big number"
-		/>
 		<int
 			name="subject_switches_off"
 			value="0"

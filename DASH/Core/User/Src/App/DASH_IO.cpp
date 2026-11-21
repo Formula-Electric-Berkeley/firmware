@@ -1,5 +1,5 @@
 #include "App/DASH_IO.h"
-#include "stm32u5xx_hal_gpio.h"
+#include "stm32u5xx_hal.h"
 
 static uint32_t end_buzzer_tick = 0;
 

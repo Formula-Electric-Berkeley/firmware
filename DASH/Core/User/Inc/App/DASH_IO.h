@@ -3,8 +3,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "stm32u5xx_hal_gpio.h"
-
 /* Modular handlers */
 void FEB_IO_Update_GPIO(void);
 void FEB_IO_Update_Buzzer(void);

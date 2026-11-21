@@ -45,31 +45,6 @@
 						duration="2000"
 					/>
 				</button>
-
-				<text
-					style_text_color="0xFFFFFF"
-					style_text_font="font_h4"
-					bind_text="subject_funny_text"
-				/>
-			</row>
-			<row
-				horizontal_align="center"
-				width="100%"
-				vertical_align="center"
-				gap="25"
-			>
-				<text
-					style_text_color="0xFFFFFF"
-					style_text_font="font_h4"
-					bind_text="subject_switches_on"
-					bind_text-fmt="On position: %d%"
-				/>
-				<text
-					style_text_color="0xFFFFFF"
-					style_text_font="font_h4"
-					bind_text="subject_switches_off"
-					bind_text-fmt="Off position: %d%"
-				/>
 			</row>
 		</column>
 	</view>
