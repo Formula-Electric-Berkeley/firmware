@@ -57,8 +57,7 @@ const struct
     // SH - Shutdown Source
     {SH_ADDR, SH_FUSE_MAX, SH_EN_GPIO_Port, SH_EN_Pin, SH_PG_GPIO_Port, SH_PG_Pin, "SH"},
     // AF1 - Accumulator Fans
-    {AF1_ADDR, AF1_FUSE_MAX, AF1_EN_GPIO_Port, AF1_EN_Pin, AF1_PG_GPIO_Port, AF1_PG_Pin,
-     "AF1"},
+    {AF1_ADDR, AF1_FUSE_MAX, AF1_EN_GPIO_Port, AF1_EN_Pin, AF1_PG_GPIO_Port, AF1_PG_Pin, "AF1"},
     // CP - Coolant Pump
     {CP_ADDR, CP_FUSE_MAX, CP_EN_GPIO_Port, CP_EN_Pin, CP_PG_GPIO_Port, CP_PG_Pin, "CP"},
     // RF - Radiator Fans
