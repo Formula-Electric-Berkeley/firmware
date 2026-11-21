@@ -153,7 +153,8 @@ MESSAGE_REGISTRY: Dict[int, Tuple[Callable[[int], cantools.db.Message], str]] = 
     0x02: (bms_msg.get_accumulator_voltage, "Accumulator pack voltage"),
     0x03: (bms_msg.get_accumulator_temperature, "Accumulator pack temperature"),
     0x05: (bms_msg.get_bms_state, "General BMS info"),
-    # 0x06-0x09: Reserved for future BMS messages
+    0x06: (bms_msg.get_indicator_status, "BMS indicator status"),
+    # 0x07-0x09: Reserved for future BMS messages
 
     # ----- PCU Safety Messages (0x09-0x0F) -----
     0x09: (pcu_msg.normalized_brake, "Normalized brake pressure"),

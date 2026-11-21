@@ -539,7 +539,6 @@ void cmd_bms_gpio(Interaction &io, std::span<char *const>)
   t.row("Reset button", "%s", FEB_HW_Reset_Button_Pressed() ? "PRESSED" : "NOT_PRESSED");
   t.row("BMS SHDN (PC1)", "%s", FEB_HW_BMS_Shutdown_Get() ? "CLOSED" : "OPEN");
   t.row("BMS IND (PC0)", "%s", FEB_HW_BMS_Indicator_Get() ? "ON" : "off");
-  t.row("TSMS indicator", "%s", FEB_HW_TSMS_Indicator_Get() ? "ON" : "off");
   t.row("HV safe", "%s", FEB_HW_Is_HV_Safe() ? "YES" : "no");
 }
 

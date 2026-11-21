@@ -47,12 +47,13 @@ extern "C" {
 #define FEB_CAN_BMS_ACCUMULATOR_VOLTAGE_FRAME_ID (0x02u)
 #define FEB_CAN_BMS_ACCUMULATOR_TEMPERATURE_FRAME_ID (0x03u)
 #define FEB_CAN_BMS_STATE_FRAME_ID (0x05u)
+#define FEB_CAN_BMS_INDICATOR_STATUS_FRAME_ID (0x06u)
 #define FEB_CAN_BRAKE_FRAME_ID (0x09u)
 #define FEB_CAN_BSPD_STATE_FRAME_ID (0x0au)
 #define FEB_CAN_RES_STATE_FRAME_ID (0x0bu)
 #define FEB_CAN_DASH_STATE_FRAME_ID (0x10u)
 #define FEB_CAN_LVPDB_LV_24V_BUS_AND_12V_BUS_VOLTAGES_FRAME_ID (0x16u)
-#define FEB_CAN_LVPDB_LV_SH_AF1_AF2_CP_CURRENTS_FRAME_ID (0x17u)
+#define FEB_CAN_LVPDB_LV_SH_LT_BM_L_CURRENTS_FRAME_ID (0x17u)
 #define FEB_CAN_LVPDB_RF_CURRENTS_FRAME_ID (0x18u)
 #define FEB_CAN_LINPOT_FRONT_FRAME_ID (0x1eu)
 #define FEB_CAN_LINPOT_REAR_FRAME_ID (0x1fu)
@@ -151,12 +152,13 @@ extern "C" {
 #define FEB_CAN_BMS_ACCUMULATOR_VOLTAGE_LENGTH (8u)
 #define FEB_CAN_BMS_ACCUMULATOR_TEMPERATURE_LENGTH (7u)
 #define FEB_CAN_BMS_STATE_LENGTH (4u)
+#define FEB_CAN_BMS_INDICATOR_STATUS_LENGTH (1u)
 #define FEB_CAN_BRAKE_LENGTH (8u)
 #define FEB_CAN_BSPD_STATE_LENGTH (1u)
 #define FEB_CAN_RES_STATE_LENGTH (2u)
 #define FEB_CAN_DASH_STATE_LENGTH (2u)
 #define FEB_CAN_LVPDB_LV_24V_BUS_AND_12V_BUS_VOLTAGES_LENGTH (4u)
-#define FEB_CAN_LVPDB_LV_SH_AF1_AF2_CP_CURRENTS_LENGTH (8u)
+#define FEB_CAN_LVPDB_LV_SH_LT_BM_L_CURRENTS_LENGTH (8u)
 #define FEB_CAN_LVPDB_RF_CURRENTS_LENGTH (8u)
 #define FEB_CAN_LINPOT_FRONT_LENGTH (4u)
 #define FEB_CAN_LINPOT_REAR_LENGTH (4u)
@@ -255,12 +257,13 @@ extern "C" {
 #define FEB_CAN_BMS_ACCUMULATOR_VOLTAGE_IS_EXTENDED (0)
 #define FEB_CAN_BMS_ACCUMULATOR_TEMPERATURE_IS_EXTENDED (0)
 #define FEB_CAN_BMS_STATE_IS_EXTENDED (0)
+#define FEB_CAN_BMS_INDICATOR_STATUS_IS_EXTENDED (0)
 #define FEB_CAN_BRAKE_IS_EXTENDED (0)
 #define FEB_CAN_BSPD_STATE_IS_EXTENDED (0)
 #define FEB_CAN_RES_STATE_IS_EXTENDED (0)
 #define FEB_CAN_DASH_STATE_IS_EXTENDED (0)
 #define FEB_CAN_LVPDB_LV_24V_BUS_AND_12V_BUS_VOLTAGES_IS_EXTENDED (0)
-#define FEB_CAN_LVPDB_LV_SH_AF1_AF2_CP_CURRENTS_IS_EXTENDED (0)
+#define FEB_CAN_LVPDB_LV_SH_LT_BM_L_CURRENTS_IS_EXTENDED (0)
 #define FEB_CAN_LVPDB_RF_CURRENTS_IS_EXTENDED (0)
 #define FEB_CAN_LINPOT_FRONT_IS_EXTENDED (0)
 #define FEB_CAN_LINPOT_REAR_IS_EXTENDED (0)
@@ -359,12 +362,13 @@ extern "C" {
 #define FEB_CAN_BMS_ACCUMULATOR_VOLTAGE_CYCLE_TIME_MS (100u)
 #define FEB_CAN_BMS_ACCUMULATOR_TEMPERATURE_CYCLE_TIME_MS (100u)
 #define FEB_CAN_BMS_STATE_CYCLE_TIME_MS (100u)
+#define FEB_CAN_BMS_INDICATOR_STATUS_CYCLE_TIME_MS (100u)
 #define FEB_CAN_BRAKE_CYCLE_TIME_MS (100u)
 #define FEB_CAN_BSPD_STATE_CYCLE_TIME_MS (100u)
 #define FEB_CAN_RES_STATE_CYCLE_TIME_MS (100u)
 #define FEB_CAN_DASH_STATE_CYCLE_TIME_MS (100u)
 #define FEB_CAN_LVPDB_LV_24V_BUS_AND_12V_BUS_VOLTAGES_CYCLE_TIME_MS (100u)
-#define FEB_CAN_LVPDB_LV_SH_AF1_AF2_CP_CURRENTS_CYCLE_TIME_MS (100u)
+#define FEB_CAN_LVPDB_LV_SH_LT_BM_L_CURRENTS_CYCLE_TIME_MS (100u)
 #define FEB_CAN_LVPDB_RF_CURRENTS_CYCLE_TIME_MS (100u)
 #define FEB_CAN_LINPOT_FRONT_CYCLE_TIME_MS (20u)
 #define FEB_CAN_LINPOT_REAR_CYCLE_TIME_MS (20u)
@@ -527,12 +531,13 @@ extern "C" {
 #define FEB_CAN_BMS_ACCUMULATOR_VOLTAGE_NAME "bms_accumulator_voltage"
 #define FEB_CAN_BMS_ACCUMULATOR_TEMPERATURE_NAME "bms_accumulator_temperature"
 #define FEB_CAN_BMS_STATE_NAME "bms_state"
+#define FEB_CAN_BMS_INDICATOR_STATUS_NAME "bms_indicator_status"
 #define FEB_CAN_BRAKE_NAME "brake"
 #define FEB_CAN_BSPD_STATE_NAME "bspd_state"
 #define FEB_CAN_RES_STATE_NAME "res_state"
 #define FEB_CAN_DASH_STATE_NAME "dash_state"
 #define FEB_CAN_LVPDB_LV_24V_BUS_AND_12V_BUS_VOLTAGES_NAME "lvpdb_lv_24v_bus_and_12v_bus_voltages"
-#define FEB_CAN_LVPDB_LV_SH_AF1_AF2_CP_CURRENTS_NAME "lvpdb_lv_sh_lt_bm_l_currents"
+#define FEB_CAN_LVPDB_LV_SH_LT_BM_L_CURRENTS_NAME "lvpdb_lv_sh_lt_bm_l_currents"
 #define FEB_CAN_LVPDB_RF_CURRENTS_NAME "lvpdb_rf_currents"
 #define FEB_CAN_LINPOT_FRONT_NAME "linpot_front"
 #define FEB_CAN_LINPOT_REAR_NAME "linpot_rear"
@@ -644,6 +649,13 @@ extern "C" {
 #define FEB_CAN_BMS_ACCUMULATOR_TEMPERATURE_MAX_TEMPERATURE_CELL_NAME "max_temperature_cell"
 #define FEB_CAN_BMS_STATE_BMS_STATE_NAME "bms_state"
 #define FEB_CAN_BMS_STATE_TOTAL_PACK_VOLTAGE_NAME "total_pack_voltage"
+#define FEB_CAN_BMS_INDICATOR_STATUS_IMD_CHECK_NAME "IMD_CHECK"
+#define FEB_CAN_BMS_INDICATOR_STATUS_PRE_ON_IND_NAME "PRE_ON_IND"
+#define FEB_CAN_BMS_INDICATOR_STATUS_IMD_ON_IND_NAME "IMD_ON_IND"
+#define FEB_CAN_BMS_INDICATOR_STATUS_IN_ON_IND_NAME "IN_ON_IND"
+#define FEB_CAN_BMS_INDICATOR_STATUS_BMS_ON_IND_NAME "BMS_ON_IND"
+#define FEB_CAN_BMS_INDICATOR_STATUS_AIR_ON_IND_NAME "AIR_ON_IND"
+#define FEB_CAN_BMS_INDICATOR_STATUS_TSMS_ON_IND_NAME "TSMS_ON_IND"
 #define FEB_CAN_BRAKE_BRAKE_POSITION_NAME "brake_position"
 #define FEB_CAN_BRAKE_BRAKE1_PCT_NAME "brake1_pct"
 #define FEB_CAN_BRAKE_BRAKE2_PCT_NAME "brake2_pct"
@@ -665,10 +677,10 @@ extern "C" {
 #define FEB_CAN_DASH_STATE_READY_TO_DRIVE_NAME "ready_to_drive"
 #define FEB_CAN_LVPDB_LV_24V_BUS_AND_12V_BUS_VOLTAGES_LV_24V_VOLTAGE_NAME "lv_24v_voltage"
 #define FEB_CAN_LVPDB_LV_24V_BUS_AND_12V_BUS_VOLTAGES_LV_12V_VOLTAGE_NAME "lv_12v_voltage"
-#define FEB_CAN_LVPDB_LV_SH_AF1_AF2_CP_CURRENTS_LV_CURRENT_NAME "lv_current"
-#define FEB_CAN_LVPDB_LV_SH_AF1_AF2_CP_CURRENTS_SH_CURRENT_NAME "sh_current"
-#define FEB_CAN_LVPDB_LV_SH_AF1_AF2_CP_CURRENTS_AF1_AF2_CURRENT_NAME "af1_af2_current"
-#define FEB_CAN_LVPDB_LV_SH_AF1_AF2_CP_CURRENTS_CP_CURRENT_NAME "cp_current"
+#define FEB_CAN_LVPDB_LV_SH_LT_BM_L_CURRENTS_LV_CURRENT_NAME "lv_current"
+#define FEB_CAN_LVPDB_LV_SH_LT_BM_L_CURRENTS_SH_CURRENT_NAME "sh_current"
+#define FEB_CAN_LVPDB_LV_SH_LT_BM_L_CURRENTS_AF1_AF2_CURRENT_NAME "af1_af2_current"
+#define FEB_CAN_LVPDB_LV_SH_LT_BM_L_CURRENTS_CP_CURRENT_NAME "cp_current"
 #define FEB_CAN_LVPDB_RF_CURRENTS_RF_CURRENT_NAME "rf_current"
 #define FEB_CAN_LINPOT_FRONT_LINPOT_LEFT_NAME "linpot_left"
 #define FEB_CAN_LINPOT_FRONT_LINPOT_RIGHT_NAME "linpot_right"
@@ -2030,6 +2042,62 @@ struct feb_can_bms_state_t {
 };
 
 /**
+ * Signals in message bms_indicator_status.
+ *
+ * All signal values are as on the CAN bus.
+ */
+struct feb_can_bms_indicator_status_t {
+    /**
+     * Range: -
+     * Scale: 1
+     * Offset: 0
+     */
+    uint8_t imd_check;
+
+    /**
+     * Range: -
+     * Scale: 1
+     * Offset: 0
+     */
+    uint8_t pre_on_ind;
+
+    /**
+     * Range: -
+     * Scale: 1
+     * Offset: 0
+     */
+    uint8_t imd_on_ind;
+
+    /**
+     * Range: -
+     * Scale: 1
+     * Offset: 0
+     */
+    uint8_t in_on_ind;
+
+    /**
+     * Range: -
+     * Scale: 1
+     * Offset: 0
+     */
+    uint8_t bms_on_ind;
+
+    /**
+     * Range: -
+     * Scale: 1
+     * Offset: 0
+     */
+    uint8_t air_on_ind;
+
+    /**
+     * Range: -
+     * Scale: 1
+     * Offset: 0
+     */
+    uint8_t tsms_on_ind;
+};
+
+/**
  * Signals in message brake.
  *
  * PCU brake: position + 2 pressure sensors (centi-percent) + status flags
@@ -2228,7 +2296,7 @@ struct feb_can_lvpdb_lv_24v_bus_and_12v_bus_voltages_t {
  *
  * All signal values are as on the CAN bus.
  */
-struct feb_can_lvpdb_lv_sh_af1_af2_cp_currents_t {
+struct feb_can_lvpdb_lv_sh_lt_bm_l_currents_t {
     /**
      * Range: -
      * Scale: 1
@@ -12417,6 +12485,232 @@ double feb_can_bms_state_total_pack_voltage_decode(uint32_t value);
 bool feb_can_bms_state_total_pack_voltage_is_in_range(uint32_t value);
 
 /**
+ * Pack message bms_indicator_status.
+ *
+ * @param[out] dst_p Buffer to pack the message into.
+ * @param[in] src_p Data to pack.
+ * @param[in] size Size of dst_p.
+ *
+ * @return Size of packed data, or negative error code.
+ */
+int feb_can_bms_indicator_status_pack(
+    uint8_t *dst_p,
+    const struct feb_can_bms_indicator_status_t *src_p,
+    size_t size);
+
+/**
+ * Unpack message bms_indicator_status.
+ *
+ * @param[out] dst_p Object to unpack the message into.
+ * @param[in] src_p Message to unpack.
+ * @param[in] size Size of src_p.
+ *
+ * @return zero(0) or negative error code.
+ */
+int feb_can_bms_indicator_status_unpack(
+    struct feb_can_bms_indicator_status_t *dst_p,
+    const uint8_t *src_p,
+    size_t size);
+
+/**
+ * Init message fields to default values from bms_indicator_status.
+ *
+ * @param[in] msg_p Message to init.
+ *
+ * @return zero(0) on success or (-1) in case of nullptr argument.
+ */
+int feb_can_bms_indicator_status_init(struct feb_can_bms_indicator_status_t *msg_p);
+
+/**
+ * Encode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to encode.
+ *
+ * @return Encoded signal.
+ */
+uint8_t feb_can_bms_indicator_status_imd_check_encode(double value);
+
+/**
+ * Decode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to decode.
+ *
+ * @return Decoded signal.
+ */
+double feb_can_bms_indicator_status_imd_check_decode(uint8_t value);
+
+/**
+ * Check that given signal is in allowed range.
+ *
+ * @param[in] value Signal to check.
+ *
+ * @return true if in range, false otherwise.
+ */
+bool feb_can_bms_indicator_status_imd_check_is_in_range(uint8_t value);
+
+/**
+ * Encode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to encode.
+ *
+ * @return Encoded signal.
+ */
+uint8_t feb_can_bms_indicator_status_pre_on_ind_encode(double value);
+
+/**
+ * Decode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to decode.
+ *
+ * @return Decoded signal.
+ */
+double feb_can_bms_indicator_status_pre_on_ind_decode(uint8_t value);
+
+/**
+ * Check that given signal is in allowed range.
+ *
+ * @param[in] value Signal to check.
+ *
+ * @return true if in range, false otherwise.
+ */
+bool feb_can_bms_indicator_status_pre_on_ind_is_in_range(uint8_t value);
+
+/**
+ * Encode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to encode.
+ *
+ * @return Encoded signal.
+ */
+uint8_t feb_can_bms_indicator_status_imd_on_ind_encode(double value);
+
+/**
+ * Decode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to decode.
+ *
+ * @return Decoded signal.
+ */
+double feb_can_bms_indicator_status_imd_on_ind_decode(uint8_t value);
+
+/**
+ * Check that given signal is in allowed range.
+ *
+ * @param[in] value Signal to check.
+ *
+ * @return true if in range, false otherwise.
+ */
+bool feb_can_bms_indicator_status_imd_on_ind_is_in_range(uint8_t value);
+
+/**
+ * Encode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to encode.
+ *
+ * @return Encoded signal.
+ */
+uint8_t feb_can_bms_indicator_status_in_on_ind_encode(double value);
+
+/**
+ * Decode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to decode.
+ *
+ * @return Decoded signal.
+ */
+double feb_can_bms_indicator_status_in_on_ind_decode(uint8_t value);
+
+/**
+ * Check that given signal is in allowed range.
+ *
+ * @param[in] value Signal to check.
+ *
+ * @return true if in range, false otherwise.
+ */
+bool feb_can_bms_indicator_status_in_on_ind_is_in_range(uint8_t value);
+
+/**
+ * Encode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to encode.
+ *
+ * @return Encoded signal.
+ */
+uint8_t feb_can_bms_indicator_status_bms_on_ind_encode(double value);
+
+/**
+ * Decode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to decode.
+ *
+ * @return Decoded signal.
+ */
+double feb_can_bms_indicator_status_bms_on_ind_decode(uint8_t value);
+
+/**
+ * Check that given signal is in allowed range.
+ *
+ * @param[in] value Signal to check.
+ *
+ * @return true if in range, false otherwise.
+ */
+bool feb_can_bms_indicator_status_bms_on_ind_is_in_range(uint8_t value);
+
+/**
+ * Encode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to encode.
+ *
+ * @return Encoded signal.
+ */
+uint8_t feb_can_bms_indicator_status_air_on_ind_encode(double value);
+
+/**
+ * Decode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to decode.
+ *
+ * @return Decoded signal.
+ */
+double feb_can_bms_indicator_status_air_on_ind_decode(uint8_t value);
+
+/**
+ * Check that given signal is in allowed range.
+ *
+ * @param[in] value Signal to check.
+ *
+ * @return true if in range, false otherwise.
+ */
+bool feb_can_bms_indicator_status_air_on_ind_is_in_range(uint8_t value);
+
+/**
+ * Encode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to encode.
+ *
+ * @return Encoded signal.
+ */
+uint8_t feb_can_bms_indicator_status_tsms_on_ind_encode(double value);
+
+/**
+ * Decode given signal by applying scaling and offset.
+ *
+ * @param[in] value Signal to decode.
+ *
+ * @return Decoded signal.
+ */
+double feb_can_bms_indicator_status_tsms_on_ind_decode(uint8_t value);
+
+/**
+ * Check that given signal is in allowed range.
+ *
+ * @param[in] value Signal to check.
+ *
+ * @return true if in range, false otherwise.
+ */
+bool feb_can_bms_indicator_status_tsms_on_ind_is_in_range(uint8_t value);
+
+/**
  * Pack message brake.
  *
  * @param[out] dst_p Buffer to pack the message into.
@@ -13177,9 +13471,9 @@ bool feb_can_lvpdb_lv_24v_bus_and_12v_bus_voltages_lv_12v_voltage_is_in_range(ui
  *
  * @return Size of packed data, or negative error code.
  */
-int feb_can_lvpdb_lv_sh_af1_af2_cp_currents_pack(
+int feb_can_lvpdb_lv_sh_lt_bm_l_currents_pack(
     uint8_t *dst_p,
-    const struct feb_can_lvpdb_lv_sh_af1_af2_cp_currents_t *src_p,
+    const struct feb_can_lvpdb_lv_sh_lt_bm_l_currents_t *src_p,
     size_t size);
 
 /**
@@ -13191,8 +13485,8 @@ int feb_can_lvpdb_lv_sh_af1_af2_cp_currents_pack(
  *
  * @return zero(0) or negative error code.
  */
-int feb_can_lvpdb_lv_sh_af1_af2_cp_currents_unpack(
-    struct feb_can_lvpdb_lv_sh_af1_af2_cp_currents_t *dst_p,
+int feb_can_lvpdb_lv_sh_lt_bm_l_currents_unpack(
+    struct feb_can_lvpdb_lv_sh_lt_bm_l_currents_t *dst_p,
     const uint8_t *src_p,
     size_t size);
 
@@ -13203,7 +13497,7 @@ int feb_can_lvpdb_lv_sh_af1_af2_cp_currents_unpack(
  *
  * @return zero(0) on success or (-1) in case of nullptr argument.
  */
-int feb_can_lvpdb_lv_sh_af1_af2_cp_currents_init(struct feb_can_lvpdb_lv_sh_af1_af2_cp_currents_t *msg_p);
+int feb_can_lvpdb_lv_sh_lt_bm_l_currents_init(struct feb_can_lvpdb_lv_sh_lt_bm_l_currents_t *msg_p);
 
 /**
  * Encode given signal by applying scaling and offset.
@@ -13212,7 +13506,7 @@ int feb_can_lvpdb_lv_sh_af1_af2_cp_currents_init(struct feb_can_lvpdb_lv_sh_af1_
  *
  * @return Encoded signal.
  */
-uint16_t feb_can_lvpdb_lv_sh_af1_af2_cp_currents_lv_current_encode(double value);
+uint16_t feb_can_lvpdb_lv_sh_lt_bm_l_currents_lv_current_encode(double value);
 
 /**
  * Decode given signal by applying scaling and offset.
@@ -13221,7 +13515,7 @@ uint16_t feb_can_lvpdb_lv_sh_af1_af2_cp_currents_lv_current_encode(double value)
  *
  * @return Decoded signal.
  */
-double feb_can_lvpdb_lv_sh_af1_af2_cp_currents_lv_current_decode(uint16_t value);
+double feb_can_lvpdb_lv_sh_lt_bm_l_currents_lv_current_decode(uint16_t value);
 
 /**
  * Check that given signal is in allowed range.
@@ -13230,7 +13524,7 @@ double feb_can_lvpdb_lv_sh_af1_af2_cp_currents_lv_current_decode(uint16_t value)
  *
  * @return true if in range, false otherwise.
  */
-bool feb_can_lvpdb_lv_sh_af1_af2_cp_currents_lv_current_is_in_range(uint16_t value);
+bool feb_can_lvpdb_lv_sh_lt_bm_l_currents_lv_current_is_in_range(uint16_t value);
 
 /**
  * Encode given signal by applying scaling and offset.
@@ -13239,7 +13533,7 @@ bool feb_can_lvpdb_lv_sh_af1_af2_cp_currents_lv_current_is_in_range(uint16_t val
  *
  * @return Encoded signal.
  */
-uint16_t feb_can_lvpdb_lv_sh_af1_af2_cp_currents_sh_current_encode(double value);
+uint16_t feb_can_lvpdb_lv_sh_lt_bm_l_currents_sh_current_encode(double value);
 
 /**
  * Decode given signal by applying scaling and offset.
@@ -13248,7 +13542,7 @@ uint16_t feb_can_lvpdb_lv_sh_af1_af2_cp_currents_sh_current_encode(double value)
  *
  * @return Decoded signal.
  */
-double feb_can_lvpdb_lv_sh_af1_af2_cp_currents_sh_current_decode(uint16_t value);
+double feb_can_lvpdb_lv_sh_lt_bm_l_currents_sh_current_decode(uint16_t value);
 
 /**
  * Check that given signal is in allowed range.
@@ -13257,7 +13551,7 @@ double feb_can_lvpdb_lv_sh_af1_af2_cp_currents_sh_current_decode(uint16_t value)
  *
  * @return true if in range, false otherwise.
  */
-bool feb_can_lvpdb_lv_sh_af1_af2_cp_currents_sh_current_is_in_range(uint16_t value);
+bool feb_can_lvpdb_lv_sh_lt_bm_l_currents_sh_current_is_in_range(uint16_t value);
 
 /**
  * Encode given signal by applying scaling and offset.
@@ -13266,7 +13560,7 @@ bool feb_can_lvpdb_lv_sh_af1_af2_cp_currents_sh_current_is_in_range(uint16_t val
  *
  * @return Encoded signal.
  */
-uint16_t feb_can_lvpdb_lv_sh_af1_af2_cp_currents_af1_af2_current_encode(double value);
+uint16_t feb_can_lvpdb_lv_sh_lt_bm_l_currents_af1_af2_current_encode(double value);
 
 /**
  * Decode given signal by applying scaling and offset.
@@ -13275,7 +13569,7 @@ uint16_t feb_can_lvpdb_lv_sh_af1_af2_cp_currents_af1_af2_current_encode(double v
  *
  * @return Decoded signal.
  */
-double feb_can_lvpdb_lv_sh_af1_af2_cp_currents_af1_af2_current_decode(uint16_t value);
+double feb_can_lvpdb_lv_sh_lt_bm_l_currents_af1_af2_current_decode(uint16_t value);
 
 /**
  * Check that given signal is in allowed range.
@@ -13284,7 +13578,7 @@ double feb_can_lvpdb_lv_sh_af1_af2_cp_currents_af1_af2_current_decode(uint16_t v
  *
  * @return true if in range, false otherwise.
  */
-bool feb_can_lvpdb_lv_sh_af1_af2_cp_currents_af1_af2_current_is_in_range(uint16_t value);
+bool feb_can_lvpdb_lv_sh_lt_bm_l_currents_af1_af2_current_is_in_range(uint16_t value);
 
 /**
  * Encode given signal by applying scaling and offset.
@@ -13293,7 +13587,7 @@ bool feb_can_lvpdb_lv_sh_af1_af2_cp_currents_af1_af2_current_is_in_range(uint16_
  *
  * @return Encoded signal.
  */
-uint16_t feb_can_lvpdb_lv_sh_af1_af2_cp_currents_cp_current_encode(double value);
+uint16_t feb_can_lvpdb_lv_sh_lt_bm_l_currents_cp_current_encode(double value);
 
 /**
  * Decode given signal by applying scaling and offset.
@@ -13302,7 +13596,7 @@ uint16_t feb_can_lvpdb_lv_sh_af1_af2_cp_currents_cp_current_encode(double value)
  *
  * @return Decoded signal.
  */
-double feb_can_lvpdb_lv_sh_af1_af2_cp_currents_cp_current_decode(uint16_t value);
+double feb_can_lvpdb_lv_sh_lt_bm_l_currents_cp_current_decode(uint16_t value);
 
 /**
  * Check that given signal is in allowed range.
@@ -13311,7 +13605,7 @@ double feb_can_lvpdb_lv_sh_af1_af2_cp_currents_cp_current_decode(uint16_t value)
  *
  * @return true if in range, false otherwise.
  */
-bool feb_can_lvpdb_lv_sh_af1_af2_cp_currents_cp_current_is_in_range(uint16_t value);
+bool feb_can_lvpdb_lv_sh_lt_bm_l_currents_cp_current_is_in_range(uint16_t value);
 
 /**
  * Pack message lvpdb_rf_currents.
@@ -49760,12 +50054,13 @@ typedef struct {
 typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_bms_accumulator_voltage_t data; } FEB_CAN_DB_bms_accumulator_voltage_t;
 typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_bms_accumulator_temperature_t data; } FEB_CAN_DB_bms_accumulator_temperature_t;
 typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_bms_state_t data; } FEB_CAN_DB_bms_state_t;
+typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_bms_indicator_status_t data; } FEB_CAN_DB_bms_indicator_status_t;
 typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_brake_t data; } FEB_CAN_DB_brake_t;
 typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_bspd_state_t data; } FEB_CAN_DB_bspd_state_t;
 typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_res_state_t data; } FEB_CAN_DB_res_state_t;
 typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_dash_state_t data; } FEB_CAN_DB_dash_state_t;
 typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_lvpdb_lv_24v_bus_and_12v_bus_voltages_t data; } FEB_CAN_DB_lvpdb_lv_24v_bus_and_12v_bus_voltages_t;
-typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_lvpdb_lv_sh_af1_af2_cp_currents_t data; } FEB_CAN_DB_lvpdb_lv_sh_lt_bm_l_currents_t;
+typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_lvpdb_lv_sh_lt_bm_l_currents_t data; } FEB_CAN_DB_lvpdb_lv_sh_lt_bm_l_currents_t;
 typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_lvpdb_rf_currents_t data; } FEB_CAN_DB_lvpdb_rf_currents_t;
 typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_linpot_front_t data; } FEB_CAN_DB_linpot_front_t;
 typedef struct { FEB_CAN_DB_Meta_t meta; struct feb_can_linpot_rear_t data; } FEB_CAN_DB_linpot_rear_t;
@@ -49864,6 +50159,7 @@ typedef struct {
     FEB_CAN_DB_bms_accumulator_voltage_t bms_accumulator_voltage;
     FEB_CAN_DB_bms_accumulator_temperature_t bms_accumulator_temperature;
     FEB_CAN_DB_bms_state_t bms_state;
+    FEB_CAN_DB_bms_indicator_status_t bms_indicator_status;
     FEB_CAN_DB_brake_t brake;
     FEB_CAN_DB_bspd_state_t bspd_state;
     FEB_CAN_DB_res_state_t res_state;

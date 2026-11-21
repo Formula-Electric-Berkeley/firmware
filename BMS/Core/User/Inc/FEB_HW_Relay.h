@@ -2,14 +2,6 @@
  * @file FEB_HW_Relay.h
  * @brief Hardware abstraction for relay control and sensing
  * @author Formula Electric @ Berkeley
- *
- * Provides GPIO abstraction for:
- * - AIR+ contactor control (PC_AIR_Pin)
- * - Precharge relay control (PC_RELAY_Pin)
- * - BMS indicator output (BMS_IND_Pin)
- * - Fault indicator LED (INDICATOR_Pin)
- * - Buzzer control (BUZZER_EN_Pin)
- * - AIR/Shutdown sensing inputs
  */
 
 #ifndef INC_FEB_HW_RELAY_H_
@@ -77,16 +69,12 @@ extern "C"
   void FEB_HW_Fault_Indicator_Set(bool on);
 
   /**
-   * @brief Set buzzer state
-   * @param on true = buzzer on, false = buzzer off
-   */
-  void FEB_HW_Buzzer_Set(bool on);
-
-  /**
    * @brief Set the Tractive System Status Indicator (TSSI_IN, PB2)
    * @param green true = high (green / healthy), false = low (red / fault)
    */
   void FEB_HW_TSSI_Set(bool green);
+
+  void FEB_IMD_ON_OFF(bool on);
 
   /* ============================================================================
    * Sense Input Functions
@@ -121,17 +109,6 @@ extern "C"
    * @return FEB_RELAY_STATE_CLOSE if IMD OK, FEB_RELAY_STATE_OPEN if IMD fault
    */
   FEB_Relay_State_t FEB_HW_IMD_Sense(void);
-
-  /**
-   * @brief Drive the TSMS indicator light output (PC11)
-   */
-  void FEB_HW_TSMS_Indicator_Set(bool on);
-
-  /**
-   * @brief Read back the commanded TSMS indicator light state
-   * @return true if the indicator output is driven on
-   */
-  bool FEB_HW_TSMS_Indicator_Get(void);
 
   /**
    * @brief Read BMS reset button state

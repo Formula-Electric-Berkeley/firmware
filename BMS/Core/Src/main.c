@@ -19,7 +19,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
-#include "adc.h"
 #include "can.h"
 #include "dma.h"
 #include "i2c.h"
@@ -105,7 +104,6 @@ int main(void)
   MX_SPI1_Init();
   MX_I2C1_Init();
   MX_CAN1_Init();
-  MX_ADC1_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   printf("[BOOT] UART ready @115200 (USART2)\r\n");

@@ -10,6 +10,7 @@
 #include "FEB_SM.h"
 #include "feb_can_lib.h"
 #include "feb_can_db.h"
+#include "main.h"
 #include "stm32f4xx_hal.h"
 #include <math.h>
 #include <stdbool.h>
@@ -197,6 +198,20 @@ static void send_next_cell_data(void)
   }
 }
 
+static void send_indicator_status(void)
+{
+  struct feb_can_bms_indicator_status_t msg = {.imd_check = HAL_GPIO_ReadPin(IMD_CHECK_GPIO_Port, IMD_CHECK_Pin),
+                                               .pre_on_ind = HAL_GPIO_ReadPin(PRE_ON_IND_GPIO_Port, PRE_ON_IND_Pin),
+                                               .imd_on_ind = HAL_GPIO_ReadPin(IMD_ON_IND_GPIO_Port, IMD_ON_IND_Pin),
+                                               .in_on_ind = HAL_GPIO_ReadPin(IN_ON_IND_GPIO_Port, IN_ON_IND_Pin),
+                                               .bms_on_ind = HAL_GPIO_ReadPin(BMS_ON_IND_GPIO_Port, BMS_ON_IND_Pin),
+                                               .air_on_ind = HAL_GPIO_ReadPin(AIR_ON_IND_GPIO_Port, AIR_ON_IND_Pin),
+                                               .tsms_on_ind = HAL_GPIO_ReadPin(TSMS_ON_IND_GPIO_Port, TSMS_ON_IND_Pin)};
+  uint8_t tx_data[FEB_CAN_BMS_INDICATOR_STATUS_LENGTH];
+  feb_can_bms_indicator_status_pack(tx_data, &msg, sizeof(tx_data));
+  FEB_CAN_TX_Send(FEB_CAN_INSTANCE_1, FEB_CAN_BMS_INDICATOR_STATUS_FRAME_ID, FEB_CAN_ID_STD, tx_data, sizeof(tx_data));
+}
+
 void FEB_CAN_State_Init(void)
 {
   current_state = BMS_STATE_BOOT;
@@ -230,6 +245,13 @@ void FEB_CAN_State_Tick(void)
   {
     state_divider = 0;
     send_bms_state();
+  }
+
+  static uint16_t indicator_divider = 0;
+  if (++indicator_divider >= 100)
+  {
+    indicator_divider = 0;
+    send_indicator_status();
   }
 
   static uint16_t voltage_divider = 33;

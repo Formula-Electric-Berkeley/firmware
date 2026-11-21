@@ -64,13 +64,6 @@ void StartADBMSTask(void *argument)
   {
     LOG_E(TAG_ADBMS, "FATAL: Initialization failed after %d attempts", MAX_INIT_RETRIES);
     FEB_ADBMS_Update_Error_Type(ERROR_TYPE_INIT_FAILURE);
-
-    /* Signal failure via LED blinking */
-    for (;;)
-    {
-      HAL_GPIO_TogglePin(INDICATOR_GPIO_Port, INDICATOR_Pin);
-      osDelay(pdMS_TO_TICKS(500));
-    }
   }
 
   /* === Main Task Loop === */

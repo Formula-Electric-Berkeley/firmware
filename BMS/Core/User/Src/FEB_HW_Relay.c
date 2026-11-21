@@ -2,20 +2,6 @@
  * @file FEB_HW_Relay.c
  * @brief Hardware abstraction for relay control and sensing
  * @author Formula Electric @ Berkeley
- *
- * Pin mapping (from main.h):
- * - PC_AIR_Pin (PC2): AIR+ contactor control
- * - PC_RELAY_Pin (PD2): Precharge relay control
- * - BMS_A_Pin (PC1): BMS shutdown relay (BMS_SHUTDOWN in SN4)
- * - BMS_IND_Pin (PC0): BMS indicator output
- * - INDICATOR_Pin (PC13): Fault indicator LED
- * - BUZZER_EN_Pin (PA0): Buzzer enable
- * - AIR_M_SENSE_Pin (PC4): AIR- feedback input
- * - AIR_P_SENSE_Pin (PC5): AIR+ feedback input
- * - SHS_IN_Pin (PC12): Shutdown loop input
- * - SHS_IMD_Pin (PC10): IMD shutdown input
- * - SHS_TSMS_Pin (PC11): TSMS indicator light output
- * - TSSI_IN_Pin (PB2): Tractive System Status Indicator (high=green, low=red)
  */
 
 #include "FEB_HW_Relay.h"
@@ -59,18 +45,17 @@ void FEB_HW_BMS_Indicator_Set(bool on)
 
 void FEB_HW_Fault_Indicator_Set(bool on)
 {
-  HAL_GPIO_WritePin(INDICATOR_GPIO_Port, INDICATOR_Pin, on ? GPIO_PIN_SET : GPIO_PIN_RESET);
-}
-
-void FEB_HW_Buzzer_Set(bool on)
-{
-  HAL_GPIO_WritePin(BUZZER_EN_GPIO_Port, BUZZER_EN_Pin, on ? GPIO_PIN_SET : GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(SOFT_LIGHT_GPIO_Port, SOFT_LIGHT_Pin, on ? GPIO_PIN_SET : GPIO_PIN_RESET);
 }
 
 void FEB_HW_TSSI_Set(bool green)
 {
   /* TSSI_IN (PB2): high = green (healthy), low = red (fault). */
   HAL_GPIO_WritePin(TSSI_IN_GPIO_Port, TSSI_IN_Pin, green ? GPIO_PIN_SET : GPIO_PIN_RESET);
+}
+void FEB_IMD_ON_OFF(bool on)
+{
+  HAL_GPIO_WritePin(IMD_IND_EN_GPIO_Port, IMD_IND_EN_Pin, on ? GPIO_PIN_SET : GPIO_PIN_RESET);
 }
 
 /* ============================================================================
@@ -95,22 +80,12 @@ FEB_Relay_State_t FEB_HW_Precharge_Sense(void)
 
 FEB_Relay_State_t FEB_HW_Shutdown_Sense(void)
 {
-  return (FEB_Relay_State_t)HAL_GPIO_ReadPin(SHS_IN_GPIO_Port, SHS_IN_Pin);
+  return (FEB_Relay_State_t)HAL_GPIO_ReadPin(IN_ON_IND_GPIO_Port, IN_ON_IND_Pin);
 }
 
 FEB_Relay_State_t FEB_HW_IMD_Sense(void)
 {
-  return (FEB_Relay_State_t)HAL_GPIO_ReadPin(SHS_IMD_GPIO_Port, SHS_IMD_Pin);
-}
-
-void FEB_HW_TSMS_Indicator_Set(bool on)
-{
-  HAL_GPIO_WritePin(SHS_TSMS_GPIO_Port, SHS_TSMS_Pin, on ? GPIO_PIN_SET : GPIO_PIN_RESET);
-}
-
-bool FEB_HW_TSMS_Indicator_Get(void)
-{
-  return HAL_GPIO_ReadPin(SHS_TSMS_GPIO_Port, SHS_TSMS_Pin) == GPIO_PIN_SET;
+  return (FEB_Relay_State_t)HAL_GPIO_ReadPin(IN_ON_IND_GPIO_Port, IN_ON_IND_Pin);
 }
 
 bool FEB_HW_Reset_Button_Pressed(void)

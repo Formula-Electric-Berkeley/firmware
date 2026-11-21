@@ -52,11 +52,8 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, INDICATOR_Pin|BMS_IND_Pin|BMS_A_Pin|PC_AIR_Pin
-                          |SPI1_CS_Pin|SPI2_CS_Pin|SHS_TSMS_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(BUZZER_EN_GPIO_Port, BUZZER_EN_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, SOFT_LIGHT_Pin|BMS_IND_Pin|BMS_A_Pin|PC_AIR_Pin
+                          |SPI1_CS_Pin|SPI2_CS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(TSSI_IN_GPIO_Port, TSSI_IN_Pin, GPIO_PIN_RESET);
@@ -64,32 +61,33 @@ void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(PC_RELAY_GPIO_Port, PC_RELAY_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : INDICATOR_Pin BMS_IND_Pin BMS_A_Pin PC_AIR_Pin
-                           SPI1_CS_Pin SPI2_CS_Pin SHS_TSMS_Pin */
-  GPIO_InitStruct.Pin = INDICATOR_Pin|BMS_IND_Pin|BMS_A_Pin|PC_AIR_Pin
-                          |SPI1_CS_Pin|SPI2_CS_Pin|SHS_TSMS_Pin;
+  /*Configure GPIO pins : SOFT_LIGHT_Pin BMS_IND_Pin BMS_A_Pin PC_AIR_Pin
+                           SPI1_CS_Pin SPI2_CS_Pin */
+  GPIO_InitStruct.Pin = SOFT_LIGHT_Pin|BMS_IND_Pin|BMS_A_Pin|PC_AIR_Pin
+                          |SPI1_CS_Pin|SPI2_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : BUZZER_EN_Pin */
-  GPIO_InitStruct.Pin = BUZZER_EN_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  /*Configure GPIO pins : TSMS_ON_IND_Pin IMD_IND_EN_Pin IMD_CHECK_Pin BMS_ON_IND_Pin
+                           AIR_ON_IND_Pin */
+  GPIO_InitStruct.Pin = TSMS_ON_IND_Pin|IMD_IND_EN_Pin|IMD_CHECK_Pin|BMS_ON_IND_Pin
+                          |AIR_ON_IND_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(BUZZER_EN_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : AIR_M_SENSE_Pin AIR_P_SENSE_Pin WAKE2_Pin INT2_Pin
-                           SHS_IMD_Pin SHS_IN_Pin */
-  GPIO_InitStruct.Pin = AIR_M_SENSE_Pin|AIR_P_SENSE_Pin|WAKE2_Pin|INT2_Pin
-                          |SHS_IMD_Pin|SHS_IN_Pin;
+  /*Configure GPIO pins : AIR_M_SENSE_Pin AIR_P_SENSE_Pin WAKE2_OUT_Pin INT2_OUT_Pin
+                           IN_ON_IND_Pin IMD_ON_IND_Pin PRE_ON_IND_Pin */
+  GPIO_InitStruct.Pin = AIR_M_SENSE_Pin|AIR_P_SENSE_Pin|WAKE2_OUT_Pin|INT2_OUT_Pin
+                          |IN_ON_IND_Pin|IMD_ON_IND_Pin|PRE_ON_IND_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : WAKE1_Pin INT1_Pin PG_Pin ALERT_Pin */
-  GPIO_InitStruct.Pin = WAKE1_Pin|INT1_Pin|PG_Pin|ALERT_Pin;
+  /*Configure GPIO pins : WAKE1_Pin INT1_OUT_Pin PG_Pin ALERT_Pin */
+  GPIO_InitStruct.Pin = WAKE1_Pin|INT1_OUT_Pin|PG_Pin|ALERT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);

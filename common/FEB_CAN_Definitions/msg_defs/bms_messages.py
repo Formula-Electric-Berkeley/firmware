@@ -68,6 +68,71 @@ def get_bms_state(frame_id: int):
 
     return msg
 
+def get_indicator_status(frame_id: int):
+
+    signals = []
+
+    signals.append(cantools.db.Signal(
+        name="IMD_CHECK",
+        start=0,
+        length=1,
+        byte_order="little_endian",
+    ))
+
+    signals.append(cantools.db.Signal(
+        name="PRE_ON_IND",
+        start=1,
+        length=1,
+        byte_order="little_endian",
+    ))
+
+    signals.append(cantools.db.Signal(
+        name="IMD_ON_IND",
+        start=2,
+        length=1,
+        byte_order="little_endian",
+    ))
+    
+    signals.append(cantools.db.Signal(
+        name="IN_ON_IND",
+        start=3,
+        length=1,
+        byte_order="little_endian",
+    ))
+    
+    signals.append(cantools.db.Signal(
+        name="BMS_ON_IND",
+        start=4,
+        length=1,
+        byte_order="little_endian",
+    ))
+    
+    signals.append(cantools.db.Signal(
+        name="AIR_ON_IND",
+        start=5,
+        length=1,
+        byte_order="little_endian",
+    ))
+    
+    signals.append(cantools.db.Signal(
+        name="TSMS_ON_IND",
+        start=6,
+        length=1,
+        byte_order="little_endian",
+    ))
+
+    msg = cantools.db.Message(
+        frame_id=frame_id,
+        name="bms_indicator_status",
+        length=1,
+        signals=signals,
+        senders=['BMS'],
+        cycle_time=100,
+        strict=True
+    )
+
+    return msg
+
 def get_accumulator_voltage(frame_id: int):
     signals = []
     for i, name in enumerate(["average_cell_voltage", "min_cell_voltage", "max_cell_voltage"]):

@@ -279,7 +279,6 @@ static void fault_begin(BMS_State_t fault_type)
    * buzzer sounds for as long as the fault is latched (power-cycle to clear). */
   FEB_HW_BMS_Shutdown_Set(false);
   FEB_HW_BMS_Indicator_Set(true);
-  FEB_HW_Buzzer_Set(true);
   LOG_W(TAG_SM, "BMS shutdown relay opened");
 
   /* Turn on fault indicator */
@@ -330,7 +329,6 @@ static void fault_recover(void)
    * outputs (BMS indicator is the inverse of the relay pin). */
   FEB_HW_BMS_Shutdown_Set(true);
   FEB_HW_BMS_Indicator_Set(false);
-  FEB_HW_Buzzer_Set(false);
   FEB_HW_Fault_Indicator_Set(false);
 
   /* HV contactors stay open for the idle state. */
@@ -718,7 +716,6 @@ void FEB_SM_Init(void)
   /* Reset indicators and fault buzzer */
   FEB_HW_BMS_Indicator_Set(false);
   FEB_HW_Fault_Indicator_Set(false);
-  FEB_HW_Buzzer_Set(false);
 
   /* Close BMS shutdown relay (enables HV path when shutdown loop complete) */
   FEB_HW_BMS_Shutdown_Set(true);
