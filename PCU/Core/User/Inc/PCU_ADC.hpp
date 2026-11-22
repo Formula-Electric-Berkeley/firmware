@@ -21,7 +21,6 @@ public:
   APPS_Sensor(uint8_t apps_id, uint16_t min_raw, uint16_t max_raw);
 
   uint16_t getRaw();
-  uint16_t get_torque();
   float get_percentage();
   bool in_range();
 

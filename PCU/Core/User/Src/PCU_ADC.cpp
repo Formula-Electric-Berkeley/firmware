@@ -43,11 +43,6 @@ uint16_t APPS_Sensor::getRaw()
   return adc_buf[apps_id];
 }
 
-uint16_t APPS_Sensor::get_torque()
-{
-  return get_percentage() * MAX_TORQUE;
-}
-
 float APPS_Sensor::get_percentage()
 {
   // My reasoning for these checks is that the sensors

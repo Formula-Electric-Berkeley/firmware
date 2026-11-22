@@ -12,6 +12,13 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+extern uint32_t last_sample_ms;
+extern uint32_t last_plausible_ms;
+extern uint32_t last_bse_plausible_ms;
+extern bool apps_implausibility;
+extern bool brake_implausibility;
+extern uint16_t torque_command;
+
 void PCU_Tick(void);
 
 uint16_t PCU_GetTorqueCommand(void);
